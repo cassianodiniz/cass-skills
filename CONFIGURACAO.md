@@ -49,7 +49,7 @@ origens. Nunca migre trabalhos de outras contas por suposição. Na configuraç�
 vídeo, um arquivo explícito do projeto tem precedência e não é sobrescrito.
 
 O template Canva é configurado somente quando um post precisar dele. Leia
-`skills/cass-carrossel/references/templates-canva.md`. Sua escolha é gravada no
+`skills/carrossel/references/templates-canva.md`. Sua escolha é gravada no
 mesmo arquivo externo, não na skill instalada. Atualizar não redefine o template.
 
 Atualização do GitHub depende do cliente. No Codex CLI, confira o catálogo com

@@ -1,5 +1,5 @@
 ---
-name: cass-carrossel
+name: carrossel
 description: Use quando Cassiano pede para criar, desenvolver, revisar, retomar ou montar no Canva um post de Instagram; anotar ou listar ideias de post; continuar um post que a Carine começou ou abrir um post do banco Posts Carrossel no Notion; ou pede explicitamente para procurar carrosséis de referência no Meta AI ou Instagram. Não usar para stories, reels, vídeos ou análise isolada de métricas.
 ---
 

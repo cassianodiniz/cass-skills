@@ -1,5 +1,10 @@
 # Alterações
 
+## 0.8.0
+
+- Renomeada `cass-carrossel` para `carrossel` no acionamento e na pasta da skill.
+- Referências, exemplos de uso e testes apontam para os novos nomes; dados externos e motores preservados.
+
 ## 0.6.0
 
 - Configuração persistente externa: pastas de posts/pesquisas/vídeo, template Canva, programas e instaladores preservados entre versões; backup e compatibilidade com configuração explícita do projeto.
