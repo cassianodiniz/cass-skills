@@ -9,7 +9,7 @@ Este arquivo é um índice, não uma checklist de leitura. Abra somente o arquiv
 | RÉGUA de escrita (exemplos reais com métrica) | `posts-virais/INDICE.md` → abrir só os posts escolhidos, sempre do mesmo formato do post (1 post por arquivo) | decisão Cassiano 05/07: régua local sempre; NUNCA Cérebro/AI Search (recorte pode vir lixo). Sínteses e comparativos ficam no fim do próprio índice |
 | Por que viraliza (engrenagens psicológicas) | `psicologia-viral-cassiano.md` | portável entre temas; usar como régua de revisão, não como fôrma |
 | TEMA/postura que performa (contra o quê ele bate, o que defende) | `posicionamento.md` | medido em 105 posts (virou×não); é teto editorial, não regra de escrita |
-| Para qual público escrever e onde pesquisar | `perfil-editorial.md` | o Cassiano decide o perfil; a skill detecta os domínios, que podem ser saúde + IA |
+| Para qual público escrever e onde pesquisar | `perfil-editorial.md` | perfil fixo de saúde/nutrição; não oferece modelos editoriais de IA |
 | Qual formato pro objetivo | `estrategia-formato.md` | só mostrar se o Cassiano pedir — quem escolhe é ele |
 | O que NUNCA publicar | `risco-editorial.md` | vence todos em conflito |
 | Modelos Canva e quebra de linha | `templates-canva.md` | — |

@@ -9,7 +9,7 @@ conector acessa a fonte. Não confunda ter instruções com ter conexão ativa.
 | Pergunta com várias frentes, comparação ou síntese extensa | Use a skill `search` do plugin para planejar e conferir fontes, com a coleta adequada abaixo. |
 | Artigos e evidências científicas de saúde/nutrição | Use Sider Scholar, se conectado: busca acadêmica por tema/identificador; PubMed quando a base for explicitamente pedida. Abra o artigo ou texto disponível para conferir as afirmações. |
 | Notícias, famosos, acontecimentos e datas | Busca web/Exa disponível; abra a notícia e procure o anúncio, entrevista, comunicado ou registro original. Sider não é a rota principal para noticiário. |
-| Ferramentas, versões e recursos de IA | Documentação oficial atual e pesquisas primárias pertinentes. |
+| Alegação técnica em um tema de saúde | Documentação oficial atual e fontes primárias pertinentes, mantendo o perfil saúde. |
 | Referências visuais no Meta/Instagram | Só quando o usuário pedir essa fonte; siga `pesquisa-meta.md`. |
 
 A `search` deve respeitar esta escolha da fonte acadêmica: delegue a organização
@@ -26,7 +26,7 @@ resolver a coleta com a mesma qualidade de fonte.
 Na criação de post sobre um tema novo, execute a pesquisa do assunto e de um
 caso real de alguém que passou por situação relacionada **antes da estrutura**.
 Não ofereça essa busca como opção nem peça autorização extra para pesquisar.
-Primeiro feche somente o que falta para definir tema, público e perfil editorial;
+Primeiro feche somente o que falta para definir tema e público; o perfil editorial já é saúde;
 pesquisa não espera a escolha da quantidade/função de cada card.
 
 1. Pesquise o assunto pelas rotas acima e identifique o que precisa de evidência.

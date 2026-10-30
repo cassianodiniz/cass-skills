@@ -1,5 +1,11 @@
 # Alterações
 
+## 0.9.0
+
+- Carrossel fixada em saúde/nutrição; removida escolha de perfil e rota editorial de IA.
+- Estado novo começa em saúde. Retomadas preservam texto final e mapa aprovado.
+- Pesquisa, casos, revisão e prévia Canva permanecem no fluxo.
+
 ## 0.8.0
 
 - Renomeada `cass-carrossel` para `carrossel` no acionamento e na pasta da skill.

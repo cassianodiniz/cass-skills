@@ -1,6 +1,6 @@
 # Cass Smart Skills
 
-Plugin de skills distribuído pelo GitHub. Versão atual: 0.8.0.
+Plugin de skills distribuído pelo GitHub. Versão atual: 0.9.0.
 
 | Skill | Uso |
 |---|---|
@@ -150,3 +150,8 @@ python3 skills/video-maker/scripts/test_ar_morto.py
 A validação cobre o contrato de fontes, o arquivamento local e regressões da edição: cortes, processamento de transcrição com motor simulado e conferência da fala com áudio sintético. Ela não cobre a motion-designer, que depende de Node, FFmpeg e HyperFrames instalados, nem prova execução real de uma pesquisa Exa, edição Canva ou geração de imagens; esses fluxos dependem dos serviços configurados no cliente.
 
 Detalhes dos testes executados e seus limites: [VALIDACAO.md](VALIDACAO.md).
+
+A carrossel desta distribuição usa sempre o perfil **saúde e nutrição**, sem
+seleção de perfil ou modelos editoriais de inteligência artificial. O usuário
+continua fornecendo seu template Canva. Pesquisa e revisão com IA são ferramentas
+do fluxo, sem alterar o perfil editorial.

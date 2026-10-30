@@ -23,6 +23,14 @@ card a card descrito abaixo; “escreve” é a autorização para executá-lo. 
 já autoriza a execução e o esqueleto foi aprovado, não crie outra confirmação.
 Sem ask-me disponível, siga diretamente as rodadas de `estrutura-cards.md`.
 
+## Perfil desta distribuição
+
+Esta carrossel é voltada exclusivamente a **saúde e nutrição**. Use sempre
+`perfil_editorial="saude"`; não pergunte se o perfil é saúde ou inteligência
+artificial e não ofereça modelos editoriais de IA. Pergunte apenas tema, público,
+objetivo e formato ainda não informados. As ferramentas de IA usadas para
+pesquisar ou revisar continuam disponíveis; isso não muda o perfil do conteúdo.
+
 ## Configuração desta distribuição
 
 Esta é a versão pública da skill do Cassiano. Nas instruções operacionais,
@@ -84,7 +92,7 @@ Não crie estado, mapa ou copy. O fluxo abaixo só começa quando Cassiano troux
 criação ou alteração do post.
 
 1. Capture o material e classifique autoria e domínio.
-2. Explique em até 5 linhas o que entendeu; pergunte perfil e formato numa pergunta só, se faltarem, e depois só as lacunas que mudariam o post.
+2. Explique em até 5 linhas o que entendeu; use o perfil saúde e pergunte somente o formato, se faltar, e depois só as lacunas que mudariam o post.
 3. Definido o tema de um post novo, pesquise o assunto e um caso real de pessoa relacionado a ele, antes do esqueleto, pelas rotas de `pesquisa-e-casos.md`. Essa pesquisa já faz parte da criação: não peça autorização separada para pesquisar. Use Sider para papers e busca web para notícias/casos. Proponha o esqueleto com o nome da pessoa e o fato sustentado no card 1 e uma conexão específica entre o caso e o tema no card 2, além de tese, público, tensão, fontes e lacunas. Sem caso verificável, siga a alternativa explícita daquela referência. Preserve texto final do usuário e mapas já aprovados na retomada.
 4. Mostre o esqueleto identificado como estrutura provisória e pergunte: “Quer editar algo ou posso escrever? Digite escreve para seguir.” Espere a aprovação explícita do usuário. Só com o mapa aprovado a copy é escrita — com a âncora de voz — e passa pelo validador determinístico.
 5. GPT 6 Sol high revisa e limpa a versão (se falhar, subagente do modelo da sessão). Revalide; se necessário, faça somente uma segunda rodada corretiva.

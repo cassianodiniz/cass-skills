@@ -9,7 +9,7 @@ O Cassiano decide a arquitetura do post, não a frase. Uma tese confirmada em pr
 ## Entrada adaptativa
 
 1. Resuma em até 5 linhas o que entendeu: tese provável, público, material disponível, decisão ainda aberta.
-2. Se perfil editorial (saúde ou IA) e formato não estiverem inequívocos no material, pergunte os dois **numa pergunta só**, no começo. Se o material já responde, confirme no resumo e não pergunte.
+2. Use sempre o perfil editorial saúde. Se o formato não estiver inequívoco no material, pergunte somente o formato, no começo; se já estiver informado, confirme no resumo e não pergunte.
 3. Pergunte somente o que ainda estiver faltando e que mudaria o mapa. Não repita perguntas já respondidas nem imponha entrevista quando o material é suficiente.
 
 ## Mapa provisório
