@@ -1,30 +1,31 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "cass-smart-skills",
-  "version": "0.9.0",
-  "description": "Skills para entrevista, pesquisa com fontes, slides no Canva, carrosséis, motion graphics e edição de vídeo.",
+  "name": "cass-skills",
+  "version": "1.0.0",
+  "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
   "author": {
     "name": "Cassiano Diniz"
   },
-  "repository": "https://github.com/cassianodiniz/cass-smart-skills",
-  "homepage": "https://github.com/cassianodiniz/cass-smart-skills",
+  "repository": "https://github.com/cassianodiniz/cass-skills",
+  "homepage": "https://github.com/cassianodiniz/cass-skills",
   "keywords": [
     "skills",
     "research",
     "canva",
     "motion",
     "video",
-    "carousel"
+    "carousel",
+    "nutrition"
   ],
   "extensions": {
     "com.openai": {
       "interface": {
-        "displayName": "Cass Smart Skills",
-        "shortDescription": "Pesquisa, posts e vídeo",
-        "longDescription": "Seis skills para alinhar pedidos, pesquisar com fontes, preparar slides no Canva, criar posts de Instagram, motion graphics e editar reels com arquivos locais.",
+        "displayName": "Cass Skills",
+        "shortDescription": "Conteúdo, pesquisa e nutrição",
+        "longDescription": "Dez skills: ask-me, search, slides-canva, carrossel, motion-designer, video-maker, dieta, biodisp-nutrients, nutricao-canetas e exames-laboratoriais. Instruções, scripts, livros e referências incluídos.",
         "developerName": "Cassiano Diniz",
         "category": "Productivity",
-        "defaultPrompt": "Use as skills do Cass Smart Skills para me ajudar com esta tarefa."
+        "defaultPrompt": "Use ask-me para me ajudar a organizar o que quero fazer."
       }
     }
   }

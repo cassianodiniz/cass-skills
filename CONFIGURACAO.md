@@ -53,7 +53,12 @@ O template Canva é configurado somente quando um post precisar dele. Leia
 mesmo arquivo externo, não na skill instalada. Atualizar não redefine o template.
 
 Atualização do GitHub depende do cliente. No Codex CLI, confira o catálogo com
-`codex plugin marketplace upgrade cass-smart-skills` e instale a versão disponível
-com `codex plugin add cass-smart-skills@cass-smart-skills`. Um chat aberto pode
+`codex plugin marketplace upgrade cass-skills` e instale a versão disponível
+com `codex plugin add cass-skills@cass-skills`. Um chat aberto pode
 continuar com instruções antigas; valide o que o cliente carregou em um novo chat.
 Não prometa atualização imediata e não escreva no cache para forçá-la.
+
+O nome Cass Skills unifica os pacotes sem migrar configurações: o nome externo
+`CASS_SMART_HOME` e a pasta `~/.cass-smart-skills/` são mantidos por compatibilidade.
+As skills de consulta nutricional usam os materiais incluídos, sem exigir essa
+configuração. Dados de pacientes e entregas continuam fora do plugin.

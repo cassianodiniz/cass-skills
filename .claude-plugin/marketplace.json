@@ -1,0 +1,17 @@
+{
+  "name": "cass-skills",
+  "owner": {
+    "name": "Cassiano Diniz"
+  },
+  "metadata": {
+    "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos."
+  },
+  "plugins": [
+    {
+      "name": "cass-skills",
+      "source": "./",
+      "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
+      "version": "1.0.0"
+    }
+  ]
+}

@@ -1,3 +1,12 @@
+# Changelog
+
+## 1.0.0 — Cass Skills
+
+- União das seis skills do Smart com as quatro do Nutri, preservando seus arquivos.
+- Catálogos para Codex e Claude Code com uma única identidade `cass-skills`.
+- README com tabela das dez skills, instalação e migração dos pacotes antigos.
+- Proposta de encaminhamento da ask-me entregue em diff, sem aplicação.
+
 # Alterações
 
 ## 0.9.0
@@ -49,3 +58,45 @@
 - Arquivamento de pesquisas dentro da skill, sem Drive ou publicação de estante.
 - Slides com modelos e imagens fornecidos por cada usuário, sem assets pessoais incluídos.
 - Manifesto portátil e catálogo para instalação pelo GitHub.
+
+
+# Histórico do pacote Nutri antes da união
+
+# Alterações
+
+## 0.7.0
+
+- Distribuição completa das fontes, livros, páginas, tabelas, imagens e índices disponíveis, conforme pedido do usuário.
+- Consultas usam arquivos da skill instalada, sem configuração ou download separado de corpus.
+- Incluídos cinco PDFs originais: Cozzolino, Costa e os três documentos de nutrição com canetas.
+
+## 0.6.0
+
+- Adicionada Exames Laboratoriais (`exames-laboratoriais`) a partir da skill local de Costa (2013).
+- Fontes, tabelas e revisão visual mantidas privadas no corpus externo; fluxo e scripts originais preservados.
+
+## 0.5.0
+
+- Adicionada Nutrição Canetas (`nutricao-canetas`), com resumos e instruções da skill local.
+- Corpus integral privado externo, preservado entre atualizações; buscador original mantido.
+
+## 0.4.1
+
+- Renomeada `book-biodisp-nutrients` para `biodisp-nutrients` no acionamento e na pasta da skill.
+- Referências e testes ajustados; corpus e identificador do pacote original preservados.
+
+## 0.4.0
+
+- Renomeada `cass-dieta` para `dieta` no acionamento e na pasta da skill.
+- Renomeada `cass-book-biodisp-nutrients` para `book-biodisp-nutrients` no acionamento e na pasta da skill.
+- Referências, exemplos de uso e testes apontam para os novos nomes; dados externos e motores preservados.
+
+## 0.2.0
+
+- Adicionada cass-book-biodisp-nutrients, com busca e proveniência pelo motor original do corpus local.
+- Preparador com validação de hashes/SQLite, corpus externo preservado e recusa de sobrescrita; o livro e seus índices não entram no repositório público.
+- Incluídos testes sintéticos do preparador; dieta preservada sem alterações.
+
+## 0.1.0
+
+- Publicação da cass-dieta a partir do pacote público fornecido, preservando os 22 arquivos.

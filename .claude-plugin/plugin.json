@@ -1,0 +1,19 @@
+{
+  "name": "cass-skills",
+  "version": "1.0.0",
+  "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
+  "author": {
+    "name": "Cassiano Diniz"
+  },
+  "homepage": "https://github.com/cassianodiniz/cass-skills",
+  "repository": "https://github.com/cassianodiniz/cass-skills",
+  "keywords": [
+    "skills",
+    "research",
+    "canva",
+    "motion",
+    "video",
+    "carousel",
+    "nutrition"
+  ]
+}

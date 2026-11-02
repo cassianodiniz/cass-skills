@@ -1,11 +1,11 @@
 {
-  "name": "cass-smart-skills",
+  "name": "cass-skills",
   "interface": {
-    "displayName": "Cass Smart Skills"
+    "displayName": "Cass Skills"
   },
   "plugins": [
     {
-      "name": "cass-smart-skills",
+      "name": "cass-skills",
       "source": {
         "source": "local",
         "path": "./"

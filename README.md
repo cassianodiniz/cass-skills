@@ -1,26 +1,80 @@
-# Cass Smart Skills
+# Cass Skills
 
-Plugin de skills distribuído pelo GitHub. Versão atual: 0.9.0.
+Um único plugin com 10 skills de criação de conteúdo, pesquisa e nutrição, para
+compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.0.0.
 
-| Skill | Uso |
+| Skill | O que faz |
 |---|---|
-| ask-me | Alinhar decisões por entrevista antes de executar. |
-| search | Pesquisar com Exa, conferir fontes e guardar pesquisas localmente. |
-| slides-canva | Preparar slides, editar no Canva e criar imagens a partir do material fornecido. |
-| motion-designer | Criar motion graphics mudo que ilustra um trecho de fala (metade de cima de um reel ou tela cheia), com HyperFrames. |
-| video-maker | Editar reels com pastas persistentes de brutos, editados e transcrições, headline e legendas opcionais. |
-| carrossel | Entrevistar, pesquisar, aprovar o esqueleto, revisar e criar prévia em novo rascunho Canva, com template persistente. |
+| [ask-me](skills/ask-me/SKILL.md) | Entrevista o usuário para alinhar o pedido e preparar um prompt de execução. |
+| [search](skills/search/SKILL.md) | Pesquisa temas, confere fontes e organiza os resultados e referências. |
+| [slides-canva](skills/slides-canva/SKILL.md) | Transforma material fornecido pelo usuário em slides e imagens didáticas no Canva. |
+| [carrossel](skills/carrossel/SKILL.md) | Desenvolve posts de saúde e nutrição, da entrevista e pesquisa até a prévia no Canva. |
+| [motion-designer](skills/motion-designer/SKILL.md) | Cria animações explicativas para ilustrar trechos de fala. |
+| [video-maker](skills/video-maker/SKILL.md) | Edita vídeos e reels, com cortes, ilustrações e legendas opcionais. |
+| [dieta](skills/dieta/SKILL.md) | Executa a prescrição dietética em planilha, sob as decisões do nutricionista. |
+| [biodisp-nutrients](skills/biodisp-nutrients/SKILL.md) | Consulta o material incluído de Cozzolino sobre nutrientes, metabolismo e biodisponibilidade. |
+| [nutricao-canetas](skills/nutricao-canetas/SKILL.md) | Apoia o nutricionista na alimentação de adultos que usam medicamentos para obesidade. |
+| [exames-laboratoriais](skills/exames-laboratoriais/SKILL.md) | Consulta conceitos e tabelas de Costa (2013), identificando os limites dessa fonte histórica. |
+
+Se ainda não souber qual tarefa pedir, comece com: **“Use ask-me para me ajudar
+a organizar o que quero fazer.”** Ela entrevista e prepara o pedido. O encaminhamento
+automático para as outras skills está [proposto em diff](propostas/ask-me-roteamento.diff),
+sem alteração aplicada à ask-me nesta versão.
+
+## Instalação com ajuda do agente
+
+No Codex ou no Claude Code, peça:
+
+> Instale o plugin Cass Skills do repositório https://github.com/cassianodiniz/cass-skills para meu usuário. Use o catálogo compatível com este aplicativo e confira se as 10 skills estão disponíveis.
+
+O agente precisa ter acesso às ferramentas locais de instalação do aplicativo.
+O pacote contém as instruções e os arquivos de apoio; serviços como Canva e
+ferramentas de vídeo dependem das conexões e programas descritos abaixo.
 
 ## Instalação no Codex
 
 Com uma versão do Codex que suporte plugins, registre o catálogo deste repositório e instale o pacote:
 
 ```sh
-codex plugin marketplace add cassianodiniz/cass-smart-skills --ref main
-codex plugin add cass-smart-skills@cass-smart-skills
+codex plugin marketplace add cassianodiniz/cass-skills --ref main
+codex plugin add cass-skills@cass-skills
 ```
 
 Esses comandos são instruções para quem quiser instalar. A criação deste repositório não instala o plugin na conta do autor. O registro do catálogo segue a [documentação oficial de plugins](https://developers.openai.com/plugins/build/plugins).
+
+Atualização: `codex plugin marketplace upgrade cass-skills`, seguido de
+`codex plugin add cass-skills@cass-skills`.
+
+## Instalação no Claude Code
+
+No chat do Claude Code:
+
+```text
+/plugin marketplace add cassianodiniz/cass-skills
+/plugin install cass-skills@cass-skills
+```
+
+Depois, use `/cass-skills:ask-me` ou `/cass-skills:<nome-da-skill>`.
+Para atualizar, use `/plugin marketplace update cass-skills` e
+`/plugin update cass-skills@cass-skills`.
+O catálogo e o manifesto seguem a [documentação oficial do Claude Code](https://code.claude.com/docs/en/plugin-marketplaces).
+Esta rota de instalação é para Claude Code; não equivale a instalar serviços
+externos nem a disponibilizar ferramentas locais no chat web do Claude.
+
+## Para quem já usava os pacotes antigos
+
+`cass-smart-skills` foi renomeado para `cass-skills`. As quatro skills do Nutri
+agora fazem parte do mesmo pacote; o repositório antigo do Nutri fica arquivado
+com um aviso para este endereço. Instale `cass-skills` pelo catálogo novo e,
+depois de conferir as skills, remova os plugins antigos pelo gerenciador do seu
+aplicativo para evitar nomes duplicados. O redirecionamento do GitHub não muda
+automaticamente a identidade dos plugins já instalados.
+
+As pastas e configurações externas existentes continuam sendo usadas.
+Por compatibilidade, `CASS_SMART_HOME` e `~/.cass-smart-skills/config.json`
+mantêm seus nomes. Nenhuma atualização move ou apaga seus trabalhos.
+
+## Como usar
 
 Depois de instalar, invoque a skill pelo nome. Exemplos:
 
@@ -41,6 +95,7 @@ As skills são instruções e arquivos auxiliares. O pacote não instala nem hos
 - slides-canva requer um conector Canva para editar e salvar apresentações e uma ferramenta de geração de imagens para essa parte do trabalho. O usuário fornece modelos, material científico e referências visuais. Chrome é necessário apenas quando solicitado para abrir o resultado.
 - video-maker requer Python 3.10+, FFmpeg/FFprobe, Pillow e NumPy. O pacote inclui um instalador para ambiente isolado e os scripts/fontes da edição; executáveis e modelos são baixados apenas na preparação autorizada. Transcrição local: Whisper large-v3-turbo via MLX em Mac compatível ou faster-whisper em CPU. Motion Designer é opcional para cenas animadas.
 - carrossel usa Python 3.10+ para seus scripts e Codex CLI autenticado para a revisão com GPT 6 Sol high; sem esse revisor, o fluxo prevê subagente da sessão. A edição visual requer conector Canva e template fornecido pelo usuário. Notion, WhatsApp, Instagram e pesquisa dependem das integrações disponíveis e da rota solicitada; sem banco configurado, há registro local.
+- As quatro skills de nutrição incluem planilha e fontes de consulta. A `dieta` requer as ferramentas de planilha e PDF indicadas em suas instruções; scripts de consulta usam Python 3.10+. As fontes incluídas somam cinco PDFs e 1.234 páginas pesquisáveis. Livros históricos mantêm os limites de uso indicados nas skills.
 - Configurações, mídia, programas e pesquisas ficam fora do plugin, conforme [CONFIGURACAO.md](CONFIGURACAO.md). O cache pode ser somente leitura; as pastas externas precisam permitir gravação.
 
 ## Pesquisas locais
@@ -128,7 +183,7 @@ instruções do pacote. Exemplos e métricas incluídos são referências do aut
 A inclusão inicial foi validada pela integridade dos arquivos, pelos links internos e pelos scripts locais. A versão 0.7.0 pesquisa o assunto e um caso real antes do esqueleto: card 1 apresenta a pessoa e o fato; card 2 faz a conexão com o tema. A escolha é proposta junto do mapa, mantendo uma só aprovação antes da copy. Sem caso verificável, a lacuna e uma alternativa são apresentadas para decisão. Sider continua sendo a rota de papers. Veja [CONFIGURACAO.md](CONFIGURACAO.md) para padrões de vídeo, transcrições e instaladores externos. Integrações externas e revisão real com GPT não foram executadas
 nesta publicação.
 
-Os nomes de acionamento não repetem o nome do plugin. Use `Cass Smart Skills: carrossel`.
+Os nomes de acionamento não repetem o nome do plugin. Use `Cass Skills: carrossel` no Codex e `/cass-skills:carrossel` no Claude Code.
 
 ## Atualizações
 
