@@ -1,3 +1,37 @@
+# Validação da ask-me — Cass Skills 1.0.1
+
+Conferência em 01/11/2026, horário de Brasília.
+
+- Aplicação exata do diff aprovado, com 14 linhas acrescentadas à ask-me.
+- Quatro cenários em três repetições por versão congelada: 12 aplicações de A
+  (1.0.0) e 12 de B (1.0.1), todas em contextos novos com GPT-6.1 Terra / medium.
+- B passou nos 12 casos: indicação de carrossel no prompt antes de autorizar,
+  carregamento de search após autorização, ausência de skill aplicável e catálogo
+  indisponível. A omitiu a nova informação nos nove casos de fechamento; o
+  carregamento de search já funcionou nos três casos de execução de A.
+- Revisão independente em GPT-6.1 Sol / high não encontrou defeito bloqueante
+  demonstrado ou correção textual necessária; B foi mantida sem novos ajustes.
+- Skill Creator: `quick_validate.py skills/ask-me` passou.
+- `tests/validar_pacote.py` passou: dez skills, catálogos e três manifestos de
+  plugin sincronizados, planilha, corpus e hashes preservados.
+- Claude Code validou o manifesto sem erros ou avisos de manifesto e reconheceu
+  as dez skills na versão 1.0.1. Codex listou o plugin único 1.0.1 como disponível,
+  usando apenas sobreposições locais de configuração do comando.
+- O diff reverso confere com a proposta original. As outras nove skills não
+  foram alteradas. As suítes de scripts da 1.0.0 não foram repetidas, pois seus
+  arquivos e comportamentos não mudaram.
+
+Evidências, cenários e hashes: [validação do encaminhamento](tests/ask-me-routing/README.md).
+
+Os ensaios são sintéticos: os corpos das skills chamadas devolviam um marcador
+local e o objetivo do brief. Não foram executados Canva, pesquisa real, instalação
+em outra conta ou testes comportamentais no Claude. Os resultados não provam
+confiabilidade universal. A ordem efetiva de leitura do catálogo não tem rastros
+preservados, e a indisponibilidade de uma skill já selecionada não foi exercitada.
+Não houve mudança nas skills pessoais instaladas.
+
+## Histórico: conferência da união na 1.0.0
+
 # Validação da união — Cass Skills 1.0.0
 
 Conferência em 01/11/2026, horário de Brasília.

@@ -1,11 +1,11 @@
 # Cass Skills
 
 Um único plugin com 10 skills de criação de conteúdo, pesquisa e nutrição, para
-compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.0.0.
+compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.0.1.
 
 | Skill | O que faz |
 |---|---|
-| [ask-me](skills/ask-me/SKILL.md) | Entrevista o usuário para alinhar o pedido e preparar um prompt de execução. |
+| [ask-me](skills/ask-me/SKILL.md) | Entrevista o usuário, prepara o prompt com as skills do pacote indicadas e encaminha a execução após autorização. |
 | [search](skills/search/SKILL.md) | Pesquisa temas, confere fontes e organiza os resultados e referências. |
 | [slides-canva](skills/slides-canva/SKILL.md) | Transforma material fornecido pelo usuário em slides e imagens didáticas no Canva. |
 | [carrossel](skills/carrossel/SKILL.md) | Desenvolve posts de saúde e nutrição, da entrevista e pesquisa até a prévia no Canva. |
@@ -17,9 +17,11 @@ compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.0.0.
 | [exames-laboratoriais](skills/exames-laboratoriais/SKILL.md) | Consulta conceitos e tabelas de Costa (2013), identificando os limites dessa fonte histórica. |
 
 Se ainda não souber qual tarefa pedir, comece com: **“Use ask-me para me ajudar
-a organizar o que quero fazer.”** Ela entrevista e prepara o pedido. O encaminhamento
-automático para as outras skills está [proposto em diff](propostas/ask-me-roteamento.diff),
-sem alteração aplicada à ask-me nesta versão.
+a organizar o que quero fazer.”** Ela entrevista, consulta as skills que acompanham
+o plugin e inclui no prompt os nomes das skills adequadas à tarefa. Ao autorizar
+a execução, o agente carrega as skills indicadas e continua com o pedido combinado.
+Se nenhuma servir ou o catálogo não puder ser conferido, ela informa essa limitação.
+A [alteração aprovada](propostas/ask-me-roteamento.diff) foi aplicada na versão 1.0.1.
 
 ## Instalação com ajuda do agente
 
@@ -194,6 +196,9 @@ A publicação de novas versões é manual, somente quando solicitada ao mantene
 Pacote organizado por Cassiano Diniz. A biblioteca padrão Python basta para os scripts de pesquisa. Nenhuma licença global adicional foi atribuída ao restante do pacote.
 
 ## Validação
+
+O encaminhamento da ask-me foi validado em quatro cenários, com três repetições
+por versão. Consulte os [resultados e limites](tests/ask-me-routing/README.md).
 
 ```sh
 python3 skills/search/tests/test_contrato.py

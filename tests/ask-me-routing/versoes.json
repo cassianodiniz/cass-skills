@@ -1,0 +1,10 @@
+{
+  "A": {
+    "sha256": "a0fe47915480453294f490afe4fcc8fe3c1d4b9ea8794af04d0d150b0d702a13",
+    "source": "723eb92:skills/ask-me/SKILL.md"
+  },
+  "B": {
+    "sha256": "a117330294079a4cecb6e4cb156dd092c1948da5115471bf1a475cfc943c66db",
+    "source": "skills/ask-me/SKILL.md na versão 1.0.1"
+  }
+}

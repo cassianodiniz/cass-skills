@@ -7,6 +7,15 @@ description: Use when user invokes /ask-me, or asks to be interviewed before a t
 
 Interview the user relentlessly until you reach a shared understanding. Map this as a design tree: every decision branches into the decisions that hang off it.
 
+## Skill routing
+
+Before writing the final brief, read the names and descriptions from the
+sibling skills at `../*/SKILL.md`. Select the skill or skills that match
+the agreed task, respecting any skill the user explicitly chose.
+Do not select ask-me as its own executor. If none fits, say so.
+If these files are unavailable, report that the catalog could not be
+confirmed instead of inventing skill names.
+
 ## Rounds
 
 Work the tree in rounds. The frontier is every decision whose prerequisites are already settled: the questions you can ask now without guessing at answers you haven't heard yet. Number each question and give your recommended answer. Then wait for the user's answers before the next round.
@@ -75,6 +84,7 @@ Generate the brief before asking for execution. Every item comes from an answer 
 
 ```
 Objetivo: <o que é pra fazer, em uma frase>
+Skill(s) a usar: <nomes exatos das skills selecionadas, ou nenhuma aplicável>
 Pronto quando: <linha de chegada verificável, com os critérios de sucesso da nota>
 Fazer: <o que foi decidido, em tópicos>
 NÃO fazer: <lista específica do que ficou de fora — itens concretos, não "não exagere">
@@ -107,5 +117,9 @@ Right after the brief, in the same message, end with this single question:
 ```
 
 Use this text as is: two options, no number (it is the only question in the message) and no ✅ line, since the frontier is already empty and there is nothing left to recommend. Execute here only on a yes (or a), without another confirmation. If the user invokes another skill to execute the prompt, hand it the brief as its input.
+
+When the user authorizes execution here, load the selected skills and
+use the agreed brief as their input. If a selected skill is unavailable,
+explain what is missing before proceeding with work that depends on it.
 
 If the user answers with a change or an addition instead, the interview is open again: a change is a new answer, and it usually brings decisions of its own that nobody has discussed yet. Recompute the frontier, run the check against the limits already set, and ask as many rounds as it takes, in the usual format, until the frontier is empty again; then deliver the updated note, brief and single closing question together. Don't fill in what the change implies by guessing just because the interview seemed finished. A "pode fechar" said earlier means it's time to deliver this closing, not to execute the task.

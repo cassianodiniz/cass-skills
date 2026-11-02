@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1 — Encaminhamento pela ask-me
+
+- Aplicado o diff aprovado: consulta das skills irmãs e indicação de seus nomes no prompt final.
+- Após autorização, carregamento das skills selecionadas com o brief combinado.
+- Ausência de skill adequada ou de acesso ao catálogo é informada, sem inventar nomes.
+- Preservados o fluxo de entrevista, a pergunta final e as outras nove skills.
+
 ## 1.0.0 — Cass Skills
 
 - União das seis skills do Smart com as quatro do Nutri, preservando seus arquivos.
