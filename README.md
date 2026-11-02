@@ -1,11 +1,12 @@
 # Cass Skills
 
-Um único plugin com 10 skills de criação de conteúdo, pesquisa e nutrição, para
-compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.0.1.
+Um único plugin com 11 skills de criação de conteúdo, pesquisa e nutrição, para
+compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.1.0.
 
 | Skill | O que faz |
 |---|---|
 | [ask-me](skills/ask-me/SKILL.md) | Entrevista o usuário, prepara o prompt com as skills do pacote indicadas e encaminha a execução após autorização. |
+| [onboard](skills/onboard/SKILL.md) | Organiza a entrada de pacientes: cria pastas, preenche contratos pelo modelo e monta a Ficha do Paciente com os dados fornecidos. |
 | [search](skills/search/SKILL.md) | Pesquisa temas, confere fontes e organiza os resultados e referências. |
 | [slides-canva](skills/slides-canva/SKILL.md) | Transforma material fornecido pelo usuário em slides e imagens didáticas no Canva. |
 | [carrossel](skills/carrossel/SKILL.md) | Desenvolve posts de saúde e nutrição, da entrevista e pesquisa até a prévia no Canva. |
@@ -27,7 +28,7 @@ A [alteração aprovada](propostas/ask-me-roteamento.diff) foi aplicada na vers�
 
 No Codex ou no Claude Code, peça:
 
-> Instale o plugin Cass Skills do repositório https://github.com/cassianodiniz/cass-skills para meu usuário. Use o catálogo compatível com este aplicativo e confira se as 10 skills estão disponíveis.
+> Instale o plugin Cass Skills do repositório https://github.com/cassianodiniz/cass-skills para meu usuário. Use o catálogo compatível com este aplicativo e confira se as 11 skills estão disponíveis.
 
 O agente precisa ter acesso às ferramentas locais de instalação do aplicativo.
 O pacote contém as instruções e os arquivos de apoio; serviços como Canva e
@@ -81,6 +82,7 @@ mantêm seus nomes. Nenhuma atualização move ou apaga seus trabalhos.
 Depois de instalar, invoque a skill pelo nome. Exemplos:
 
 - “Use ask-me para alinhar este pedido comigo.”
+- “Use onboard para preparar a pasta e o contrato de um paciente novo.”
 - “Use search para pesquisar este tema e guardar as fontes.”
 - “Use slides-canva com este texto e o modelo que estou fornecendo.”
 - “Use motion-designer para ilustrar esta fala de 7 segundos.”
@@ -92,6 +94,7 @@ Depois de instalar, invoque a skill pelo nome. Exemplos:
 As skills são instruções e arquivos auxiliares. O pacote não instala nem hospeda serviços externos.
 
 - ask-me precisa apenas de um agente capaz de ler skills.
+- onboard requer Python 3.10+ e usa somente a biblioteca padrão. Inclui os modelos de contrato ODT e de Ficha do Paciente HTML; LibreOffice é usado para conversão de formatos e conferência manual. A configuração própria fica em `~/.onboard-paciente.json`, e os arquivos dos pacientes ficam fora do plugin. O agente não envia contratos nem exporta seu PDF automaticamente.
 - motion-designer requer Node.js 22 ou superior, FFmpeg com FFprobe e o HyperFrames 0.7.56 em ambiente externo (`node <instaladores>/instalar_motion.mjs --destino <ferramentas>/motion-designer`). A transcrição opcional usa Whisper MLX local. Prints de telas de app ou de IA são fornecidos pelo usuário.
 - search requer acesso ao Exa e ferramentas de busca/leitura compatíveis. Configure a conexão `https://mcp.exa.ai/mcp` e autentique pelo fluxo disponível no seu cliente; a disponibilidade de nomes de ferramentas deve ser conferida ali. Os scripts locais requerem Python 3.10 ou superior. Delegação usa os agentes e modelos disponíveis no ambiente; sem agentes, o fluxo deve ser executado diretamente e a limitação informada.
 - slides-canva requer um conector Canva para editar e salvar apresentações e uma ferramenta de geração de imagens para essa parte do trabalho. O usuário fornece modelos, material científico e referências visuais. Chrome é necessário apenas quando solicitado para abrir o resultado.
@@ -186,6 +189,19 @@ A inclusão inicial foi validada pela integridade dos arquivos, pelos links inte
 nesta publicação.
 
 Os nomes de acionamento não repetem o nome do plugin. Use `Cass Skills: carrossel` no Codex e `/cass-skills:carrossel` no Claude Code.
+
+## Entrada de pacientes
+
+A `onboard` foi importada do [pacote fornecido](https://skills.praxios.com.br/assets/cass-onboard.skill).
+Foram incorporados os 13 arquivos: sete scripts Python, duas referências, três
+assets e o `SKILL.md`. A única adaptação na skill foi o nome de acionamento e
+suas referências textuais, de `cass-onboard` para `onboard`. Os scripts e modelos
+foram preservados. SHA-256 do pacote original:
+`63c3416b267e6200e227e8d635a3e51a351b92d918f6b9b3dba76a3713754966`.
+
+A ask-me consulta as skills instaladas, então pode indicar `onboard` sem manter
+uma lista fixa de nomes. Os dados do profissional, os preços e as pastas são
+configurados no primeiro uso; nada disso é incluído no pacote compartilhado.
 
 ## Atualizações
 

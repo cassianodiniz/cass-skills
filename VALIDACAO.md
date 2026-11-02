@@ -1,3 +1,46 @@
+# Importação da onboard — Cass Skills 1.1.0
+
+Conferência em 01/11/2026, horário de Brasília.
+
+## Origem e adaptação
+
+- Pacote: `https://skills.praxios.com.br/assets/cass-onboard.skill`.
+- SHA-256: `63c3416b267e6200e227e8d635a3e51a351b92d918f6b9b3dba76a3713754966`.
+- Incorporados 13 arquivos: SKILL.md, sete scripts Python, duas referências e três assets.
+- Mudanças mecânicas somente em SKILL.md e nas duas referências: `cass-onboard`
+  passou a `onboard`, e o título passou de Cass Onboard para Onboard.
+- Scripts e assets comparados byte a byte com o arquivo recebido, sem diferenças.
+  Nenhuma das dez skills já existentes foi alterada.
+
+## Verificações executadas
+
+- Arquivo ZIP conferido antes da extração: caminhos contidos, sem links simbólicos
+  e sem entradas fora da pasta do pacote.
+- Skill Creator: quick_validate.py passou para `skills/onboard`.
+- Verificador do pacote passou para onze skills, com nomes, manifestos,
+  catálogos, planilha e corpus preservados. Os sete scripts novos passaram na
+  análise de sintaxe Python.
+- Claude Code reconheceu onze skills na versão 1.1.0 e validou o manifesto sem
+  erros ou avisos de manifesto.
+- Dez verificações funcionais com Python 3.13 e dados inteiramente sintéticos,
+  em pasta temporária: configuração própria e cópia externa do modelo; criação
+  de pasta, ficha HTML e contrato ODT; bloqueio de CPF inválido, preço divergente
+  e campos ausentes sem gravar; preenchimento completo; preservação de pasta
+  existente; leitura do ODT; ausência de planilha sem acesso externo;
+  preservação do modelo original.
+
+## Limites
+
+A importação não alterou o fluxo original da skill. Os ensaios dos scripts não
+comprovam execução autônoma do agente, validade jurídica do modelo nem uso clínico.
+Não houve consulta de pacientes reais, acesso a Google Sheets, conversão por
+LibreOffice, envio de contrato ou exportação de PDF. A configuração pessoal
+existente e as pastas reais de pacientes não foram usadas ou alteradas.
+As suítes dos scripts das outras skills não foram repetidas porque seus arquivos
+não mudaram. As verificações anteriores permanecem no histórico abaixo.
+
+## Histórico: ask-me na versão 1.0.1
+
 # Validação da ask-me — Cass Skills 1.0.1
 
 Conferência em 01/11/2026, horário de Brasília.

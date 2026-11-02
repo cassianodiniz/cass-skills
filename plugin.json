@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "cass-skills",
-  "version": "1.0.1",
-  "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
+  "version": "1.1.0",
+  "description": "Onze skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
   "author": {
     "name": "Cassiano Diniz"
   },
@@ -22,7 +22,7 @@
       "interface": {
         "displayName": "Cass Skills",
         "shortDescription": "Conteúdo, pesquisa e nutrição",
-        "longDescription": "Dez skills: ask-me, search, slides-canva, carrossel, motion-designer, video-maker, dieta, biodisp-nutrients, nutricao-canetas e exames-laboratoriais. Instruções, scripts, livros e referências incluídos.",
+        "longDescription": "Onze skills: ask-me, onboard, search, slides-canva, carrossel, motion-designer, video-maker, dieta, biodisp-nutrients, nutricao-canetas e exames-laboratoriais. Instruções, scripts, modelos, livros e referências incluídos.",
         "developerName": "Cassiano Diniz",
         "category": "Productivity",
         "defaultPrompt": "Use ask-me para me ajudar a organizar o que quero fazer."

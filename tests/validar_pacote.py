@@ -6,7 +6,7 @@ c=json.loads((r/'.claude-plugin/plugin.json').read_text())
 assert a['name']==b['name']==c['name']=='cass-skills' and a['version']==b['version']==c['version']
 assert a['extensions']['com.openai']['interface']==b['interface']
 assert len(b['interface']['shortDescription'])<=30
-skills=[p for p in (r/'skills').iterdir() if p.is_dir()];assert {p.name for p in skills}=={'ask-me','search','slides-canva','carrossel','motion-designer','video-maker','dieta','biodisp-nutrients','nutricao-canetas','exames-laboratoriais'}
+skills=[p for p in (r/'skills').iterdir() if p.is_dir()];assert {p.name for p in skills}=={'onboard','ask-me','search','slides-canva','carrossel','motion-designer','video-maker','dieta','biodisp-nutrients','nutricao-canetas','exames-laboratoriais'}
 for path in ['.agents/plugins/marketplace.json','.claude-plugin/marketplace.json']:
  catalog=json.loads((r/path).read_text())
  assert catalog['name']=='cass-skills' and len(catalog['plugins'])==1
@@ -32,9 +32,12 @@ exames=r/'skills/exames-laboratoriais'
 assert len(list((exames/'references/pages').glob('page-*.txt')))==273
 assert (exames/'references/source/original.pdf').is_file()
 assert len(list((exames/'assets/page-images').glob('*.png')))==11
-for name in ['biodisp-nutrients','nutricao-canetas','exames-laboratoriais']:
+onboard=r/'skills/onboard'
+for name in ['Modelo_Contrato_Nutricao.odt','Ficha do Paciente (modelo).html','LEIA.md']:
+ assert (onboard/'assets'/name).is_file()
+for name in ['biodisp-nutrients','nutricao-canetas','exames-laboratoriais','onboard']:
  for p in (r/'skills'/name).rglob('*.py'):ast.parse(p.read_text())
 for line in (book/'INTEGRITY-SHA256.txt').read_text().splitlines():
  digest,name=line.split(None,1)
  assert hashlib.sha256((book/name.strip().removeprefix('./')).read_bytes()).hexdigest()==digest
-print('Pacote completo: dez skills, catálogos Codex/Claude, 1.234 páginas, PDFs disponíveis e integridade conferidos.')
+print('Pacote completo: onze skills, catálogos Codex/Claude, 1.234 páginas, PDFs disponíveis e integridade conferidos.')

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.0 — Onboard
+
+- Incluída a skill `onboard`, importada do pacote público `cass-onboard.skill`.
+- Preservados os sete scripts e os modelos; renomeados somente o acionamento e as referências ao nome da skill.
+- Atualizados a tabela do README, as dependências e os manifestos para onze skills.
+
 ## 1.0.1 — Encaminhamento pela ask-me
 
 - Aplicado o diff aprovado: consulta das skills irmãs e indicação de seus nomes no prompt final.

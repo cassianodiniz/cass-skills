@@ -4,14 +4,14 @@
     "name": "Cassiano Diniz"
   },
   "metadata": {
-    "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos."
+    "description": "Onze skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos."
   },
   "plugins": [
     {
       "name": "cass-skills",
       "source": "./",
-      "description": "Dez skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
-      "version": "1.0.1"
+      "description": "Onze skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
+      "version": "1.1.0"
     }
   ]
 }
