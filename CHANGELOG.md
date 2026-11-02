@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.0 — Pastas acessíveis e intermediários de vídeo
+
+- Novas instalações usam Vídeos/Filmes para mídia e Documentos para carrosséis; configurações antigas são preservadas.
+- Abertura das pastas de entrega e atalhos visíveis sem substituir itens existentes.
+- Limpeza opcional ao iniciar vídeo/motion, restrita a intermediários MP4 registrados de projetos encerrados e sem uso há mais de 30 dias.
+- Originais, finais aprovados, pacientes, transcrições e projetos ativos preservados.
+- Registros de geração com hashes, origens, receita e nomes imutáveis por render.
+
 ## 1.1.0 — Onboard
 
 - Incluída a skill `onboard`, importada do pacote público `cass-onboard.skill`.

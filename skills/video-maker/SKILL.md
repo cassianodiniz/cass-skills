@@ -11,6 +11,11 @@ Google Drive ou Notion do autor. Não inclui mídia dele.
 
 ## Configurar antes de começar
 
+Leia e execute [pastas, acesso e limpeza](../../references/arquivos-e-limpeza.md).
+Ao retomar um projeto, marque-o em andamento antes de limpar os demais. A limpeza
+só remove intermediários registrados, com preferência ativada pelo usuário;
+originais, finais e projetos em andamento são preservados. Não deduza descarte pela idade.
+
 Leia [references/configuracao.md](references/configuracao.md). Use as pastas e os
 padrões da configuração persistente do plugin. Um `.video-maker.json` do projeto
 explicitamente informado prevalece; não o sobrescreva. Sem configuração, confirme
@@ -61,6 +66,9 @@ Cada versão vai só na conversa: mande o MP4, explique em 2 ou 3 linhas o que a
 Em cortes de gravação bruta, `conferencia_fala.py verificar` precisa terminar sem pendências para declarar a fala revisada. Com pendência, o arquivo é **rascunho**, com o item que falta explicitado; não diga que ouviu ou conferiu a fala usando apenas Whisper, quadros ou detecção de silêncio. Quando não houver recurso para escuta direta nesta sessão, continue os cortes e verificações possíveis, prepare os áudios de revisão e entregue o rascunho com essa limitação. Não preencha declaração de escuta por inferência.
 
 Depois da aprovação explícita, copie a final para `pastas.saida` sem mover nem apagar originais. Não importe para álbuns nem acesse bibliotecas pessoais.
+Abra a pasta de saída com `scripts/acesso.py` da raiz do plugin e entregue o link
+do arquivo. Só marque o projeto como concluído quando o usuário encerrar o trabalho,
+conforme a referência de pastas e limpeza.
 
 ## Padrões visuais da skill (as escolhas do usuário prevalecem)
 

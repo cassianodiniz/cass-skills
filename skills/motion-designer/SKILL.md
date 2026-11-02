@@ -13,6 +13,11 @@ Serve para explicar conceitos técnicos (por exemplo, como uma IA se comporta) e
 
 ## Entrada e ambiente
 
+Leia e execute [pastas, acesso e limpeza](../../references/arquivos-e-limpeza.md):
+novos trabalhos usam Projetos na pasta Vídeos/Filmes, com os MP4s aprovados em
+Prontos. Ao retomar, marque o projeto em andamento antes de limpar os demais.
+Limpeza exige a preferência do usuário e preserva originais, finais e trabalhos ativos.
+
 Use a fala e a duração já fornecidas. Se faltarem tema ou tempo, faça até três perguntas curtas, com uma sugestão concreta: o que ilustrar, duração e formato. Não invente o tema. Exemplo: “Pode colar a fala e dizer quantos segundos ela dura? Sugiro um motion mudo para a metade superior, 1080×960.”
 
 Antes de criar arquivos, leia [configuração persistente](../../CONFIGURACAO.md), reutilize as pastas externas e confira as ferramentas disponíveis. Este fluxo usa HTML + GSAP + HyperFrames, Node.js 22 ou superior e, para MP4 e conferência, FFmpeg com FFprobe. Funciona com scripts Node em macOS, Linux e Windows; a transcrição opcional com MLX exige ambiente compatível. Uma conversa sem arquivos ou terminal pode ajudar no briefing e roteiro visual, mas deve explicar que a execução precisa de um agente com essas ferramentas. Não declare HTML ou MP4 criado sem o arquivo correspondente.
@@ -54,7 +59,7 @@ Pessoa real citada: use mídia real fornecida ou autorizada em cartão 3D. Prime
 
 4. **Confira e entregue o HTML primeiro.** Use o HyperFrames da pasta externa `ferramentas/motion-designer`. Se faltar, leia CONFIGURACAO.md para atualizar as cópias externas com `preparar-instaladores`, peça autorização para a instalação e execute o instalador: `node <instaladores>/instalar_motion.mjs --destino <ferramentas>/motion-designer`. Ele mantém o HyperFrames 0.7.56 definido no pacote, sem instalar dentro da skill. O navegador usado pelo motor também deve ficar no cache externo do usuário. Não reinstale programas apenas porque o plugin mudou. Se Node, FFmpeg ou navegador necessário não estiverem disponíveis, explique o que falta e preserve o projeto. Rode `node scripts/hyperframes.mjs check <pasta-saida> --json` e `node scripts/hyperframes.mjs snapshot <pasta-saida> --frames 6 --describe false`. Se houver erros, corrija e repita, no máximo três rodadas. Abra e olhe os quadros e uma redução a 360 px: sem cortes, sobreposições ou texto ilegível. Entregue HTML **e seus arquivos locais** juntos, ou ZIP, com 2–3 linhas sobre o que ilustra. Pergunte: “Autoriza criar o MP4 ou prefere ajustar algo?” Se a autorização já tiver sido dada explicitamente para esta composição, prossiga.
 
-5. **Após autorização, renderize.** Use `node scripts/render.mjs <pasta-saida>`. Ele roda a verificação, renderiza MP4 a 30 fps, verifica tamanho/duração/ausência de áudio e extrai quadros em `conferir/`. Abra `folha.png` e `celular_*.png`: a conferência final é sobre o MP4, porque preview e render podem divergir. Se houver defeito, preserve ou renomeie o MP4 anterior, ajuste a composição e renderize novamente, no máximo três renders. O script recusa substituir um MP4 existente. Ao atingir o limite, entregue o estado real e explique a pendência, sem chamar o resultado de aprovado.
+5. **Após autorização, renderize.** Use `node scripts/render.mjs <pasta-saida>`. Ele roda a verificação, renderiza MP4 a 30 fps, verifica tamanho/duração/ausência de áudio e extrai quadros em `conferir/`. Abra `folha.png` e `celular_*.png`: a conferência final é sobre o MP4, porque preview e render podem divergir. Se houver defeito, preserve o MP4 anterior no caminho registrado, ajuste a composição e renderize uma nova versão com outro nome, no máximo três renders. O script recusa substituir um MP4 existente. Ao atingir o limite, entregue o estado real e explique a pendência, sem chamar o resultado de aprovado.
 
 ## Falhas que merecem atenção
 

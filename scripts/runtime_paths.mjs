@@ -11,7 +11,7 @@ function realFuture(p) {
 export function external(value) {
   if(typeof value!=='string'||!path.isAbsolute(value)||value.includes('\0')) throw new Error('Use uma pasta absoluta externa ao plugin.');
   const p=realFuture(path.resolve(value));
-  for(const b of [plugin,path.join(os.homedir(),'.codex/plugins'),path.join(os.homedir(),'.codex/.tmp'),path.join(os.homedir(),'.agents/skills')]) {
+  for(const b of [plugin,path.join(os.homedir(),'.codex/plugins'),path.join(os.homedir(),'.codex/.tmp'),path.join(os.homedir(),'.agents/skills'),path.join(os.homedir(),'.codex/skills'),path.join(os.homedir(),'.claude/plugins'),path.join(os.homedir(),'.claude/skills')]) {
     const rel=path.relative(realFuture(b),p);
     if(rel===''||(!rel.startsWith('..'+path.sep)&&rel!=='..'&&!path.isAbsolute(rel))) throw new Error('A pasta precisa ficar fora do plugin e do cache de skills.');
   }

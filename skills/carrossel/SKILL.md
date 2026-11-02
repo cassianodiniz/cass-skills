@@ -11,6 +11,10 @@ Cria o post do tema ao Canva pronto, preservando autoria, fatos verificáveis e 
 
 ## Raiz
 
+Para facilitar o acesso à entrega, siga [pastas e abertura](../../references/arquivos-e-limpeza.md#pastas-e-acesso).
+Ao entregar uma versão, abra a pasta local do post, forneça o arquivo e o link
+Canva quando houver. Não execute limpeza de vídeos ao criar carrosséis.
+
 Use como raiz de instruções e scripts a pasta deste SKILL.md.
 Antes de criar um trabalho, leia [configuração persistente](../../CONFIGURACAO.md).
 Reutilize `pastas.posts` da configuração externa; sem configuração, proponha as

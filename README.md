@@ -1,7 +1,7 @@
 # Cass Skills
 
 Um único plugin com 11 skills de criação de conteúdo, pesquisa e nutrição, para
-compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.1.0.
+compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.2.0.
 
 | Skill | O que faz |
 |---|---|
@@ -88,6 +88,32 @@ Depois de instalar, invoque a skill pelo nome. Exemplos:
 - “Use motion-designer para ilustrar esta fala de 7 segundos.”
 - “Use video-maker para montar um reel com estes vídeos.”
 - “Use carrossel para criar um carrossel sobre este tema.”
+
+## Onde encontrar as entregas e como funciona a limpeza
+
+Novas instalações propõem as pastas conhecidas do computador:
+
+| Trabalho | Local sugerido |
+|---|---|
+| Vídeos aprovados | Vídeos (Filmes no Mac) → Cass Skills → Prontos |
+| Originais e projetos | Vídeos/Filmes → Cass Skills → Originais e Projetos |
+| Carrosséis | Documentos → Cass Skills → Carrosséis → tema |
+| Dietas, fichas e contratos | Pasta de Pacientes confirmada pelo usuário |
+
+As skills abrem a pasta da entrega e fornecem o arquivo ou link na conversa.
+Na primeira configuração, oferecem atalhos na Área de Trabalho. As pastas já
+escolhidas continuam valendo; atualizar o plugin não migra arquivos nem altera
+configurações pessoais.
+
+A limpeza é uma preferência que cada usuário ativa uma vez. Ao usar video-maker
+ou motion-designer, ela pode remover MP4s intermediários registrados pela skill,
+de projetos encerrados e sem uso há mais de 30 dias. Originais, finais aprovados,
+roteiros, transcrições, dados de pacientes e arquivos antigos sem registro ficam
+guardados. Não há limpeza geral da pasta Vídeos nem serviço em segundo plano.
+A limpeza verifica os arquivos e sua receita/origens antes de excluir. Se algo
+mudou, falta ou impede uma remoção segura, preserva e informa.
+
+Detalhes operacionais: [pastas, entregas e limpeza](references/arquivos-e-limpeza.md).
 
 ## Dependências
 

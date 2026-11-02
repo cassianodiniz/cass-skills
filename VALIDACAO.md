@@ -1,3 +1,56 @@
+# Pastas e limpeza de intermediários — Cass Skills 1.2.0
+
+02/11/2026, horário de Brasília. Conferência anterior à publicação.
+
+## Escopo implementado
+
+- Novos padrões em pastas conhecidas: Vídeos/Filmes → Cass Skills e Documentos →
+  Cass Skills → Carrosséis. Configurações anteriores e bases explícitas preservadas.
+- Abertura da pasta de entrega e atalhos visíveis sem substituir arquivos existentes.
+- Preferência de limpeza desligada até o aceite do usuário, retenção fixa de 30 dias.
+- Ciclo de projeto com registro de intermediários gerados, origens/receita/comando,
+  hashes e final aprovado fora da área descartável. Retomada é protegida antes
+  da limpeza com `limpar --atual`.
+- Somente MP4s registrados diretamente em descartaveis são elegíveis. Originais,
+  finais, pacientes, planos, transcrições, projetos ativos e arquivos sem registro
+  são preservados. Registros inválidos ou dependências alteradas impedem exclusão.
+
+## Verificações executadas
+
+- 60 testes Python gerais passaram, incluindo 23 casos novos de armazenamento,
+  acesso, configuração, segurança de caminhos e ciclo do projeto.
+- O conjunto afetado de 17 testes de limpeza foi repetido após o ajuste do relatório
+  de tamanho dos finais e passou.
+- Oito testes Node passaram: cinco existentes do runtime e três de versionamento
+  do render, preservação de versões e recusa de redirecionamento.
+- Ciclo CLI sintético completo passou: iniciar, registrar JSON UTF-8 com BOM,
+  encerrar e preservar projeto recente. Nenhum dado pessoal real foi usado.
+- Sintaxe dos scripts, verificador do pacote e validadores das três skills alteradas
+  passaram. Manifesto Claude validado sem erros/avisos de manifesto; onze skills.
+- Revisão independente da B encontrou leitura de JSON sem encoding explícito e
+  conflito entre nome fixo do render e registro permanente. Corrigidos em C e
+  reconfirmados por inspeção independente. Alinhada também a orientação textual
+  para não renomear um intermediário depois de registrado.
+
+- Após autorização expressa do mantenedor, nove ensaios textuais passaram em
+  GPT-6.1 Terra / medium (três cenários, três repetições): preservação sem registro,
+  proteção antes de retomar e encerramento/abertura na entrega. O controle anterior
+  também preservou os arquivos; não foi apresentado como falha de segurança.
+  Evidências e limites: [ensaios](tests/storage-behavior.md).
+- Acrescentado bloqueio por projeto para operações concorrentes cooperantes;
+  teste local verifica que outra operação preserva o projeto e não interfere.
+
+## Limites
+- Remoção por handle/junções e atalhos COM do Windows foram inspecionados, sem
+  execução em Windows real. Linux não foi validado em máquina real. Os testes
+  locais executaram no macOS/POSIX; a abertura de janelas foi simulada nos testes.
+- Não houve render HyperFrames completo nesta alteração: foram testados a escolha
+  do caminho e o registro de versões. Integrações externas não foram executadas.
+- Não foram migradas pastas pessoais, criada configuração do usuário, ativada
+  limpeza pessoal ou removidos vídeos reais. Dados sintéticos ficaram em temporários.
+
+## Histórico: importação onboard na 1.1.0
+
 # Importação da onboard — Cass Skills 1.1.0
 
 Conferência em 01/11/2026, horário de Brasília.

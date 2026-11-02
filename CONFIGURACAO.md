@@ -16,22 +16,31 @@ plugin; comandos abaixo partem dessa raiz.
    `~/.cass-smart-skills/config.json`. O script cria somente as pastas escolhidas,
    guarda backup de mudanças e não move/apaga arquivos anteriores.
 
-Padrões propostos, ajustáveis pelo usuário:
+Padrões novos, ajustáveis pelo usuário. A pasta Vídeos é a pasta nativa do sistema
+(Filmes no Mac); Documentos também é resolvida pelo sistema. Configurações já
+existentes e `propor --base` mantêm sua organização, sem migração automática.
 
 | Conteúdo | Pasta |
 |---|---|
-| Posts e estado por versão | `<base>/posts-instagram/` |
+| Posts e estado por versão | `Documentos/Cass Skills/Carrosséis/<tema>/` |
 | Pesquisas e fontes | `<base>/pesquisas/` |
-| Vídeos recebidos | `<base>/videos/brutos/` |
-| Versões aprovadas | `<base>/videos/editados/` |
-| Planos e rascunhos | `<base>/videos/trabalho/` |
-| Transcrições reutilizáveis | `<base>/videos/transcricoes/` |
-| Aulas longas | `<base>/videos/aulas/` |
+| Vídeos recebidos | `Vídeos/Cass Skills/Originais/` |
+| Versões aprovadas | `Vídeos/Cass Skills/Prontos/` |
+| Planos e rascunhos | `Vídeos/Cass Skills/Projetos/<tema>/` |
+| Transcrições reutilizáveis | `Vídeos/Cass Skills/Transcrições/` |
+| Aulas longas | `Vídeos/Cass Skills/Aulas/` |
 | Programas/modelos | `~/.cass-smart-skills/ferramentas/` e caches externos dos motores |
 | Instaladores preservados | `~/.cass-smart-skills/instaladores/` |
 
 `CASS_SMART_HOME` permite outra pasta de configuração externa (inclusive nos testes).
 Nada persistente pode ficar dentro do plugin/cache, nem por link simbólico.
+
+Na configuração inicial, ofereça os atalhos na Área de Trabalho e a preferência
+de limpeza de intermediários após 30 dias. Só ative a limpeza depois do aceite
+daquele usuário: `limpeza: {habilitada: true, dias: 30}`. Sem preferência ou com
+`false`, não há exclusão. Não altere pastas e outros padrões ao salvar essa opção.
+Leia [o fluxo de pastas, entrega e limpeza](references/arquivos-e-limpeza.md) para
+criar os atalhos, abrir as entregas e registrar projetos/MP4s descartáveis.
 Antes de preparar programas, inclusive após atualização com configuração já válida,
 rode `python scripts/smart_config.py preparar-instaladores`. Isso atualiza somente
 as cópias externas dos instaladores e guarda versões anteriores, sem reinstalar

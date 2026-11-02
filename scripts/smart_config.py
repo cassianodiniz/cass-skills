@@ -20,7 +20,9 @@ def externo(value):
     if not p.is_absolute():
         raise ValueError('A pasta precisa ter caminho absoluto.')
     p = p.resolve()
-    proibidos = [PLUGIN, Path.home()/'.codex/plugins', Path.home()/'.agents/skills', Path.home()/'.codex/.tmp']
+    proibidos = [PLUGIN, Path.home()/'.codex/plugins', Path.home()/'.agents/skills',
+                 Path.home()/'.codex/.tmp', Path.home()/'.codex/skills',
+                 Path.home()/'.claude/plugins', Path.home()/'.claude/skills']
     if any(dentro(p, x.resolve()) for x in proibidos):
         raise ValueError('Escolha uma pasta fora do plugin e do cache de skills.')
     return p
@@ -32,17 +34,24 @@ def arquivo():
     return raiz()/'config.json'
 
 def proposta(base=None):
-    base = externo(str(base or Path.home()/'Documents'/'Cass Smart Skills'))
+    custom = base is not None
+    if not custom:
+        from user_folders import conhecida
+    base = externo(str(base or conhecida('documents')/'Cass Skills'))
+    videos = base/'videos' if custom else externo(str(conhecida('videos')/'Cass Skills'))
+    nomes = ({'entrada':'brutos','saida':'editados','trabalho':'trabalho',
+              'transcricoes':'transcricoes','aulas':'aulas'} if custom else
+             {'entrada':'Originais','saida':'Prontos','trabalho':'Projetos',
+              'transcricoes':'Transcrições','aulas':'Aulas'})
     return {'versao': 1, 'pastas': {
-        'base': str(base), 'posts': str(base/'posts-instagram'),
+        'base': str(base), 'posts': str(base/('posts-instagram' if custom else 'Carrosséis')),
         'pesquisas': str(base/'pesquisas'),
-        'videos': {k: str(base/'videos'/v) for k,v in {
-            'entrada':'brutos','saida':'editados','trabalho':'trabalho',
-            'transcricoes':'transcricoes','aulas':'aulas'}.items()}},
+        'videos': {k: str(videos/v) for k,v in nomes.items()}},
         'ferramentas': str(raiz()/'ferramentas'),
         'instaladores': str(raiz()/'instaladores'),
         'canva': {'template_padrao_id': None, 'template_origem_id': None},
-        'video': {'perfil':'ia','headline':True,'legendas':False,'perfil_instagram':''}}
+        'video': {'perfil':'ia','headline':True,'legendas':False,'perfil_instagram':''},
+        'limpeza': {'habilitada':False, 'dias':30}}
 
 def validar(d):
     if not isinstance(d,dict) or type(d.get('versao')) is not int or d['versao'] != 1:
@@ -51,6 +60,10 @@ def validar(d):
         raise ValueError('As seções de configuração precisam conter objetos.')
     if not isinstance(d['pastas'].get('videos'),dict):
         raise ValueError('Informe as pastas de vídeo.')
+    if 'limpeza' in d:
+        l=d['limpeza']
+        if not isinstance(l,dict) or type(l.get('habilitada')) is not bool or type(l.get('dias')) is not int or l['dias']!=30:
+            raise ValueError('Limpeza: escolha habilitada verdadeiro/falso; retenção fixa de 30 dias.')
     try:
         caminhos=[d['pastas'][k] for k in ['base','posts','pesquisas']]
         caminhos += [d['pastas']['videos'][k] for k in ['entrada','saida','trabalho','transcricoes','aulas']]

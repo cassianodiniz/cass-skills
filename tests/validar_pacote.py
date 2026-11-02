@@ -13,6 +13,7 @@ for path in ['.agents/plugins/marketplace.json','.claude-plugin/marketplace.json
  entry=catalog['plugins'][0];assert entry['name']==a['name']
  source=entry['source'];assert (source['path'] if isinstance(source,dict) else source)=='./'
 for p in skills:assert (p/'SKILL.md').read_text().startswith('---\nname: '+p.name+'\n')
+for p in (r/'scripts').glob('*.py'):ast.parse(p.read_text())
 s=r/'skills/dieta'
 for p in s.rglob('*'):
  if not p.is_file() or '__pycache__' in p.parts:continue
