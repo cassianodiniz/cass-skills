@@ -12,9 +12,15 @@ try {
   while(!existsSync(base)){tail.unshift(path.basename(base));base=path.dirname(base);}
   target=path.join(realpathSync(base),...tail);
   const sourceRoot=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-  const forbidden=[path.join(os.homedir(),'.codex/plugins'),path.join(os.homedir(),'.codex/.tmp'),path.join(os.homedir(),'.agents/skills')];
+  const forbidden=['.codex/plugins','.codex/.tmp','.agents/skills','.codex/skills','.claude/plugins','.claude/skills'].map(p=>path.join(os.homedir(),p));
   if(existsSync(path.join(sourceRoot,'plugin.json')))forbidden.push(sourceRoot);
-  for(const item of forbidden){const rel=path.relative(path.resolve(item),target);if(rel===''||(!rel.startsWith('..'+path.sep)&&rel!=='..'&&!path.isAbsolute(rel)))throw new Error('Instale fora do plugin/cache.');}
+  for(const item of forbidden){
+    let base=path.resolve(item);const tail=[];
+    while(!existsSync(base)){tail.unshift(path.basename(base));base=path.dirname(base);}
+    const resolved=path.join(realpathSync(base),...tail);
+    const rel=path.relative(resolved,target);
+    if(rel===''||(!rel.startsWith('..'+path.sep)&&rel!=='..'&&!path.isAbsolute(rel)))throw new Error('Instale fora do plugin/cache.');
+  }
   const pkg=path.join(target,'package.json');
   if(existsSync(target)&&!existsSync(pkg))throw new Error('Escolha uma pasta nova ou o ambiente Motion já preparado.');
   if(existsSync(pkg)&&JSON.parse(readFileSync(pkg,'utf8')).name!=='cass-smart-motion-runtime')throw new Error('Esta pasta pertence a outro projeto; escolha uma pasta nova.');

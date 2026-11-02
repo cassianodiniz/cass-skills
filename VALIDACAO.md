@@ -1,4 +1,31 @@
-# Pastas e limpeza de intermediários — Cass Skills 1.2.0
+# Instalação e pasta Documentos — Cass Skills 1.2.1
+
+02/11/2026, horário de Brasília.
+
+- `smart_config.proposta()` usa a pasta Documentos conhecida do sistema como base
+  única de Carrosséis e Vídeos. A opção `--base` e configurações existentes conservam
+  sua organização; não há migração nem criação automática de Pacientes.
+- Prompt público `INSTALAR.txt`: instalação global do usuário, dependências fora
+  do plugin/cache, pastas confirmadas, Pacientes opcional e limpeza desligada até
+  aceite próprio. A cópia publicada no site usa o mesmo conteúdo.
+- Instaladores preservados fora do plugin recusam também `.claude/plugins`,
+  `.claude/skills` e `.codex/skills`, antes de criar ambiente ou chamar npm.
+  Os novos casos falharam antes da correção e passaram depois, com instalações
+  simuladas/bloqueadas; nenhum programa foi instalado nesses ensaios.
+- 61 testes Python e 9 testes Node aprovados. Validador do pacote aprovado:
+  11 skills, catálogos, livros, 1.234 páginas e hashes preservados.
+- Alterações nas referências são caminhos e opção de destino já pedida pelo usuário;
+  não houve alteração de gatilhos, motores ou entrevista. Ensaios com modelos e
+  revisão de comportamento de skills são N/A nesta versão.
+- Revisão independente do prompt identificou duas ambiguidades corrigidas: leitor
+  de PDF precisa ser `pypdf`/`pdftotext`; Motion deve ser testado pelo wrapper real,
+  com FFmpeg/FFprobe acessíveis ao processo. Não executamos uma instalação completa
+  de ferramentas nem testes nativos Windows/Linux para validar este texto.
+- Site: build e 2 testes de HTML/arquivos aprovados; navegador Chrome isolado
+  conferiu desktop/celular, 11 linhas, ausência de downloads por skill, cópia
+  integral e fallback de seleção manual quando o clipboard é bloqueado.
+
+# Histórico: pastas e limpeza de intermediários — Cass Skills 1.2.0
 
 02/11/2026, horário de Brasília. Conferência anterior à publicação.
 

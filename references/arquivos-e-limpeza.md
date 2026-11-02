@@ -7,12 +7,14 @@ referência, sem assumir o diretório de trabalho nem um caminho pessoal do auto
 ## Pastas e acesso
 
 - Usuário novo: `smart_config.py propor` sugere Documentos/Cass Skills/Carrosséis
-  e a pasta Vídeos do sistema (Filmes no Mac)/Cass Skills, com Originais, Prontos,
+  e Documentos/Cass Skills/Vídeos, com Originais, Prontos,
   Projetos, Transcrições e Aulas. Mostre as pastas e confirme uma vez.
 - Preserve as pastas já configuradas e os projetos com `.video-maker.json` próprio.
   Não mova trabalhos, não una consultórios nem crie outra pasta de pacientes em silêncio.
 - Dieta e onboard reutilizam a pasta de pacientes confirmada pelo usuário. Dieta
   continua abrindo a pasta ao terminar. Nenhuma limpeza de vídeo alcança esses dados.
+  Para quem ainda não escolheu, ofereça Documentos/Cass Skills/Pacientes como opção;
+  salve a escolha pelos configuradores próprios dessas skills, sem criar outro cadastro.
 - Ofereça na primeira configuração os atalhos visíveis na Área de Trabalho. Depois
   do aceite, execute `python scripts/acesso.py atalho --nome Vídeos --pasta <Prontos>`,
   e o equivalente para Carrosséis e, quando confirmada, a pasta Pacientes. Não

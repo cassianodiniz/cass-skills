@@ -22,3 +22,11 @@ test('wrapper resolves external CLI and survives a plugin release replacement',t
 test('runtime configured inside plugin is rejected',t=>{const f=fixture(t);writeFileSync(path.join(f.home,'config.json'),JSON.stringify({versao:1,ferramentas:path.join(root,'tools')}));const r=invoke(wrapper,f.env);assert.equal(r.status,2);assert.match(r.stderr,/fora do plugin/);});
 test('external alias back to plugin is rejected',t=>{const f=fixture(t);const link=path.join(f.p,'alias');symlinkSync(root,link,'dir');writeFileSync(path.join(f.home,'config.json'),JSON.stringify({versao:1,ferramentas:link}));const r=invoke(wrapper,f.env);assert.equal(r.status,2);assert.match(r.stderr,/fora do plugin/);});
 test('installer refuses cache/plugin before invoking npm',t=>{const f=fixture(t);const r=invoke(path.join(root,'scripts/instalar_motion.mjs'),f.env,['--destino',path.join(root,'runtime-test-never')]);assert.equal(r.status,2);assert.match(r.stderr,/fora do plugin/);assert.equal(existsSync(path.join(root,'runtime-test-never')),false);});
+test('preserved installer rejects Claude and Codex skill caches before npm',t=>{
+ const f=fixture(t);const installer=path.join(f.p,'instaladores/instalar_motion.mjs');mkdirSync(path.dirname(installer));cpSync(path.join(root,'scripts/instalar_motion.mjs'),installer);
+ for(const cache of ['.claude/plugins','.claude/skills','.codex/plugins','.codex/skills','.codex/.tmp','.agents/skills']) {
+  const target=path.join(f.p,cache,'runtime');mkdirSync(target,{recursive:true});writeFileSync(path.join(target,'package.json'),'{"name":"other-project"}');
+  const r=invoke(installer,{...f.env,HOME:f.p,USERPROFILE:f.p},['--destino',target]);
+  assert.equal(r.status,2);assert.match(r.stderr,/fora do plugin/);
+ }
+});

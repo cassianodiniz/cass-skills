@@ -16,7 +16,8 @@ def main():
         p.error('Use Python 3.10 ou mais novo para preparar as ferramentas.')
     root = Path(a.destino).expanduser().resolve()
     plugin = Path(__file__).resolve().parents[3]
-    blocked = [Path.home()/'.codex/plugins', Path.home()/'.codex/.tmp', Path.home()/'.agents/skills']
+    blocked = [Path.home()/'.codex/plugins', Path.home()/'.codex/.tmp', Path.home()/'.agents/skills',
+               Path.home()/'.codex/skills', Path.home()/'.claude/plugins', Path.home()/'.claude/skills']
     if (plugin/'plugin.json').exists():
         blocked.append(plugin)
     if any(root == b.resolve() or b.resolve() in root.parents for b in blocked):

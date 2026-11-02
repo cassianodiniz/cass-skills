@@ -6,7 +6,7 @@ Leia [a configuração persistente](../../../CONFIGURACAO.md). Rode
 `python scripts/configurar.py carregar` para obter pastas e padrões. A configuração
 central mora fora do plugin e é reutilizada após atualizações. Para novas
 instalações, os padrões são Originais, Prontos, Projetos, Transcrições e Aulas
-em Vídeos/Filmes → Cass Skills. Pastas anteriores são preservadas. Não escolha o primeiro arquivo
+em Documentos → Cass Skills → Vídeos. Pastas anteriores são preservadas. Não escolha o primeiro arquivo
 por ordem: liste candidatos e confira nome, conteúdo e duração.
 
 Quando o usuário indicar explicitamente um projeto com `.video-maker.json`, use

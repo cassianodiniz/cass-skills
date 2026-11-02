@@ -38,7 +38,7 @@ def proposta(base=None):
     if not custom:
         from user_folders import conhecida
     base = externo(str(base or conhecida('documents')/'Cass Skills'))
-    videos = base/'videos' if custom else externo(str(conhecida('videos')/'Cass Skills'))
+    videos = base/('videos' if custom else 'Vídeos')
     nomes = ({'entrada':'brutos','saida':'editados','trabalho':'trabalho',
               'transcricoes':'transcricoes','aulas':'aulas'} if custom else
              {'entrada':'Originais','saida':'Prontos','trabalho':'Projetos',

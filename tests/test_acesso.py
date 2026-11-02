@@ -16,11 +16,13 @@ class FolderTests(unittest.TestCase):
         self.addCleanup(self.tmp.cleanup)
         self.root = Path(self.tmp.name).resolve()
 
-    def test_new_defaults_use_native_video_and_document_folders_without_writes(self):
+    def test_new_defaults_keep_deliveries_together_in_native_documents_without_writes(self):
         with patch.object(user_folders, 'conhecida', side_effect=lambda k: self.root / k):
             d = smart_config.proposta()
         self.assertEqual(d['pastas']['posts'], str(self.root / 'documents/Cass Skills/Carrosséis'))
-        self.assertEqual(d['pastas']['videos']['saida'], str(self.root / 'videos/Cass Skills/Prontos'))
+        self.assertEqual(d['pastas']['videos']['saida'], str(self.root / 'documents/Cass Skills/Vídeos/Prontos'))
+        for value in d['pastas']['videos'].values():
+            self.assertTrue(Path(value).is_relative_to(self.root / 'documents/Cass Skills/Vídeos'))
         self.assertFalse(d['limpeza']['habilitada'])
         self.assertEqual(list(self.root.iterdir()), [])
 

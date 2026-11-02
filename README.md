@@ -1,7 +1,7 @@
 # Cass Skills
 
 Um único plugin com 11 skills de criação de conteúdo, pesquisa e nutrição, para
-compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.2.0.
+compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.2.1.
 
 | Skill | O que faz |
 |---|---|
@@ -26,9 +26,12 @@ A [alteração aprovada](propostas/ask-me-roteamento.diff) foi aplicada na vers�
 
 ## Instalação com ajuda do agente
 
-No Codex ou no Claude Code, peça:
+No Codex ou no Claude Code, copie o [prompt único de instalação global](INSTALAR.txt).
+Ele instala o plugin para seu usuário, verifica as dependências das onze skills e
+mantém os programas fora do cache, para sobreviverem às atualizações.
 
-> Instale o plugin Cass Skills do repositório https://github.com/cassianodiniz/cass-skills para meu usuário. Use o catálogo compatível com este aplicativo e confira se as 11 skills estão disponíveis.
+Também está disponível em [skills.praxios.com.br](https://skills.praxios.com.br/),
+com a lista do que cada skill faz.
 
 O agente precisa ter acesso às ferramentas locais de instalação do aplicativo.
 O pacote contém as instruções e os arquivos de apoio; serviços como Canva e
@@ -57,6 +60,8 @@ No chat do Claude Code:
 /plugin install cass-skills@cass-skills
 ```
 
+Escolha o escopo **User**, disponível em todos os seus projetos neste computador.
+O agente também pode usar `claude plugin install cass-skills@cass-skills --scope user`.
 Depois, use `/cass-skills:ask-me` ou `/cass-skills:<nome-da-skill>`.
 Para atualizar, use `/plugin marketplace update cass-skills` e
 `/plugin update cass-skills@cass-skills`.
@@ -95,8 +100,8 @@ Novas instalações propõem as pastas conhecidas do computador:
 
 | Trabalho | Local sugerido |
 |---|---|
-| Vídeos aprovados | Vídeos (Filmes no Mac) → Cass Skills → Prontos |
-| Originais e projetos | Vídeos/Filmes → Cass Skills → Originais e Projetos |
+| Vídeos aprovados | Documentos → Cass Skills → Vídeos → Prontos |
+| Originais e projetos | Documentos → Cass Skills → Vídeos → Originais e Projetos |
 | Carrosséis | Documentos → Cass Skills → Carrosséis → tema |
 | Dietas, fichas e contratos | Pasta de Pacientes confirmada pelo usuário |
 

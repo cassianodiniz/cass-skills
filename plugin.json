@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "cass-skills",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Onze skills para entrevista, pesquisa, conteúdo e nutrição, com materiais de apoio incluídos.",
   "author": {
     "name": "Cassiano Diniz"

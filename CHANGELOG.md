@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.1 — Instalação global e arquivos em Documentos
+
+- Prompt único para instalar o plugin globalmente para o usuário e preparar as dependências fora do plugin/cache.
+- Novas instalações agrupam carrosséis e vídeos em Documentos/Cass Skills; Pacientes é uma opção confirmada nos configuradores próprios.
+- Configurações e organização anteriores permanecem sem migração automática.
+- Instaladores de vídeo e Motion recusam também os caches de skills do Claude e do Codex.
+
 ## 1.2.0 — Pastas acessíveis e intermediários de vídeo
 
 - Novas instalações usam Vídeos/Filmes para mídia e Documentos para carrosséis; configurações antigas são preservadas.

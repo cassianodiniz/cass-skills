@@ -16,24 +16,33 @@ plugin; comandos abaixo partem dessa raiz.
    `~/.cass-smart-skills/config.json`. O script cria somente as pastas escolhidas,
    guarda backup de mudanças e não move/apaga arquivos anteriores.
 
-Padrões novos, ajustáveis pelo usuário. A pasta Vídeos é a pasta nativa do sistema
-(Filmes no Mac); Documentos também é resolvida pelo sistema. Configurações já
+Padrões novos, ajustáveis pelo usuário. Documentos é resolvida pelo sistema,
+inclusive quando redirecionada; Vídeos fica dentro de Cass Skills. Configurações já
 existentes e `propor --base` mantêm sua organização, sem migração automática.
 
 | Conteúdo | Pasta |
 |---|---|
 | Posts e estado por versão | `Documentos/Cass Skills/Carrosséis/<tema>/` |
 | Pesquisas e fontes | `<base>/pesquisas/` |
-| Vídeos recebidos | `Vídeos/Cass Skills/Originais/` |
-| Versões aprovadas | `Vídeos/Cass Skills/Prontos/` |
-| Planos e rascunhos | `Vídeos/Cass Skills/Projetos/<tema>/` |
-| Transcrições reutilizáveis | `Vídeos/Cass Skills/Transcrições/` |
-| Aulas longas | `Vídeos/Cass Skills/Aulas/` |
+| Vídeos recebidos | `Documentos/Cass Skills/Vídeos/Originais/` |
+| Versões aprovadas | `Documentos/Cass Skills/Vídeos/Prontos/` |
+| Planos e rascunhos | `Documentos/Cass Skills/Vídeos/Projetos/<tema>/` |
+| Transcrições reutilizáveis | `Documentos/Cass Skills/Vídeos/Transcrições/` |
+| Aulas longas | `Documentos/Cass Skills/Vídeos/Aulas/` |
+| Pacientes (opcional) | `Documentos/Cass Skills/Pacientes/`, após escolha na dieta/onboard |
 | Programas/modelos | `~/.cass-smart-skills/ferramentas/` e caches externos dos motores |
 | Instaladores preservados | `~/.cass-smart-skills/instaladores/` |
 
 `CASS_SMART_HOME` permite outra pasta de configuração externa (inclusive nos testes).
 Nada persistente pode ficar dentro do plugin/cache, nem por link simbólico.
+
+O [prompt único de instalação](INSTALAR.txt) pede o plugin no escopo global do
+usuário e as dependências fora dele. LibreOffice e outros aplicativos usam seus
+locais nativos; ambientes Python, node_modules, navegadores de renderização,
+modelos e caches de ferramentas usam destinos externos. Os arquivos de instrução,
+scripts e modelos de distribuição continuam no pacote. Não instale programas
+dentro de `.claude/plugins`, `.claude/skills`, `.codex/plugins`, `.codex/skills`,
+`.codex/.tmp` ou `.agents/skills`, nem use links para contornar a separação.
 
 Na configuração inicial, ofereça os atalhos na Área de Trabalho e a preferência
 de limpeza de intermediários após 30 dias. Só ative a limpeza depois do aceite
