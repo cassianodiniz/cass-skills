@@ -1,7 +1,7 @@
 # Cass Skills
 
 Um único plugin com 11 skills de criação de conteúdo, pesquisa e nutrição, para
-compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.2.1.
+compartilhar e instalar no Codex e no Claude Code. Versão atual: 1.2.2.
 
 | Skill | O que faz |
 |---|---|

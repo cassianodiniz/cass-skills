@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.2 — 2026-11-02
+
+- `ask-me`: atualizada para a versão pessoal revisada, com investigação aberta, alternativas A/B/C como formato principal e escolha entre até duas skills instaladas para executar o prompt, outra skill ou ajuste.
+- Demais skills preservadas.
+
 ## 1.2.1 — Instalação global e arquivos em Documentos
 
 - Prompt único para instalar o plugin globalmente para o usuário e preparar as dependências fora do plugin/cache.
