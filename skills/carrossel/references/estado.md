@@ -23,7 +23,7 @@ Use `posts/<slug>/estado.json` com `schema_version: 5`.
   "revisor_dispensa_motivo": null,
   "trechos_bloqueados": [],
   "voz_ancora": [],
-  "revisor_modelo": "gpt-6-sol",
+  "revisor_modelo": "sessao",
   "revisor_effort": "high",
   "revisor_rodadas": 0,
   "copy_aprovada_versao": null,
@@ -55,7 +55,7 @@ Use `posts/<slug>/estado.json` com `schema_version: 5`.
 - Defaults de migração nunca presumem estrutura aprovada nem versão final: estado antigo retomado exige mapa antes de nova copy da skill.
 - Alterar a copy incrementa `copy_versao`, recalcula o hash e invalida aprovação, autorização de envio e autorização do lote Canva anteriores.
 - Uma autorização de WhatsApp vale para um hash e é consumida no primeiro intento, inclusive se houver timeout.
-- `revisor_rodadas` nunca passa de 2 para a mesma versão. A revisão usa `gpt-6-sol` (high, via Codex); se ele falhar, a revisão vai para um subagente do modelo da sessão (registrado com `--registrar-subagente`, `revisor_effort: sessao`) — isso conta como uma rodada, e `revisor_modelo` guarda quem entregou.
+- `revisor_rodadas` nunca passa de 2 para a mesma versão. A revisão é feita por um subagente do modelo da sessão (registrado com `--registrar-subagente`) — isso conta como uma rodada.
 - Estado antigo com chaves `fable_*` (schema 4) migra sozinho ao carregar: os valores passam para as chaves `revisor_*`.
 - `voz_ancora` lista os posts reais usados como âncora de voz ao escrever. É informativo (rastreabilidade); não altera a copy.
 - Cada resposta de mentor entra uma vez por `message_id`.

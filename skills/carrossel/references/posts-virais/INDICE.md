@@ -145,7 +145,7 @@ Consulte só se a tarefa pedir comparação entre posts ou o histórico da base.
 - **Post 6:** seguidores ganhos, visitas ao perfil, atividade do perfil, links, endereço e contas com engajamento não foram informados.
 - **Post A - Vitaminas/soroterapia:** métrica completa em 08/07/2026 (511.954 views, 316.472 alcance, 13.669 interações). Fica em 5º lugar por visualizações entre os 6 posts medidos deste formato — abaixo de Pressão (1,08M), acima do card único de mortalidade comparada.
 - **Post B - The Rock/hormônios:** métrica completa em 08/07/2026 (1.381.863 views, 850.835 alcance, 24.361 interações). Fica em 3º lugar por visualizações entre os 7 posts medidos deste formato — atrás só de Preta Gil (12,6M) e Ozzy (3,9M).
-- **Post 9 — RESOLVIDO em 31/08/2026:** o carrossel tem **6 cards**, não 5. O card 6 foi recuperado da transcrição de 10/08/2026 (`posts/hormonios-mortes-jovens/material/2026-08-10-levantamento.md`) e já está em `tela-dividida-mortes-precoces-fisiculturismo.md`. Só a **descrição visual** do card 6 segue não informada. Publicado em 24/05/2026.
+- **Post 9 — RESOLVIDO em 31/08/2026:** o carrossel tem **6 cards**, não 5. O card 6 foi recuperado da transcrição de 10/08/2026 e já está em `tela-dividida-mortes-precoces-fisiculturismo.md`. Só a **descrição visual** do card 6 segue não informada. Publicado em 24/05/2026.
 
 ## Sumário rápido por objetivo
 

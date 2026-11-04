@@ -16,7 +16,7 @@ Este arquivo é um índice, não uma checklist de leitura. Abra somente o arquiv
 | Entrada, retomada, eixo e decisão humana | `fluxo-base.md` | carregado no início ou na retomada |
 | Estado, hashes e autorizações | `estado.md` | carregado apenas ao criar, migrar ou validar estado |
 | Ideias e posts no Notion (compartilhado com a Carine): o que vai pra lá, status, quando gravar, retomar post de outra pessoa | `notion.md` | ao anotar ideia, ao fim de cada etapa e ao retomar |
-| Escrita e revisão pelo GPT | `escrita-revisao.md` | carregado somente depois do eixo confirmado |
+| Escrita e revisão pelo subagente | `escrita-revisao.md` | carregado somente depois do eixo confirmado |
 | Mentores e WhatsApp | `mentores-whatsapp.md` | carregado somente ao enviar ou ler respostas |
 | Link direto do Instagram | `instagram-link.md` | carregado somente quando houver link |
 | Execução no Canva | `canva.md` | carregado após esqueleto aprovado e revisão, para a primeira prévia antes da aprovação final |

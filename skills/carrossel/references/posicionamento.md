@@ -4,7 +4,6 @@ Identidade editorial do Cassiano: os temas e, sobretudo, as **posturas** que mar
 performance. Medido em 105 posts (virou × não-virou; concordância 0,905). **Descrição de padrão, não promessa
 de alcance.** Tema/postura = **teto** (puxa alcance); a escrita (fichas de formato) é o **piso**.
 
-> Detalhe e método: `calibracao/tema-2026-09/ACHADOS.md` + `PRE-REGISTRO.md`.
 
 ---
 

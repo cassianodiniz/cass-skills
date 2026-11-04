@@ -34,8 +34,8 @@ DEFAULTS = {
     "revisor_dispensa_motivo": None,
     "trechos_bloqueados": [],
     "voz_ancora": [],
-    "revisor_modelo": "gpt-6-sol",
-    "revisor_effort": "high",
+    "revisor_modelo": "sessao",
+    "revisor_effort": "sessao",
     "revisor_rodadas": 0,
     "copy_aprovada_versao": None,
     "copy_aprovada_hash": None,
@@ -63,7 +63,7 @@ def criar_estado(tema: str = "") -> dict:
     return novo
 
 
-# schema 4 → 5: o revisor deixou de ser o Fable (chaves fable_*) e passou a ser o GPT.
+# schema 4 → 5: o revisor deixou de ser o Fable (chaves fable_*) e passou a ser o subagente da sessão.
 # Os valores antigos migram para as chaves novas; o histórico de quem revisou fica.
 CHAVES_ANTIGAS = {
     "fable_dispensa_motivo": "revisor_dispensa_motivo",
@@ -185,7 +185,7 @@ def consumir_autorizacao(atual: dict, copy_hash: str, momento: str | None = None
 
 
 def registrar_rodada_revisor(
-    atual: dict, *, modelo: str = "gpt-6-sol", effort: str = "high"
+    atual: dict, *, modelo: str = "sessao", effort: str = "sessao"
 ) -> None:
     rodadas = int(atual.get("revisor_rodadas", 0))
     if rodadas >= 2:

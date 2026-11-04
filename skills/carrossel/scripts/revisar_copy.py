@@ -1,21 +1,17 @@
 #!/usr/bin/env python3
-"""Executa revisão (modo revisar) ou auditoria (modo auditar) com GPT 6 Sol, esforço high.
+"""Prepara revisão (modo revisar) ou auditoria (modo auditar) por um subagente da sessão.
 
-O GPT roda sempre pelo Codex CLI (`codex exec`). Não há outro modelo neste script.
-Se o Codex falhar, o script grava o pedido pronto em `<saida>.prompt.md` e sai com
-código 2: quem roda a skill entrega esse pedido a um subagente do modelo da sessão e
-registra a resposta com `--registrar-subagente`, que passa pelas mesmas travas.
+O revisor é sempre um subagente do próprio modelo que roda a sessão (sem escolher modelo).
+O script grava o pedido pronto em `<saida>.prompt.md` e sai com código 2: quem roda a skill
+entrega esse pedido a um subagente e registra a resposta com `--registrar-subagente`,
+que aplica as travas (hash da copy, 2 rodadas, versão final).
 """
 
 from __future__ import annotations
 
 import argparse
 import json
-import os
-import shutil
-import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 import estado
@@ -26,15 +22,14 @@ class RevisaoErro(RuntimeError):
 
 
 class UsarSubagente(RevisaoErro):
-    """Codex falhou; o pedido ficou gravado para um subagente do modelo da sessão."""
+    """O pedido ficou gravado para um subagente do modelo da sessão."""
 
     def __init__(self, motivo: str, prompt_path: Path):
         super().__init__(motivo)
         self.prompt_path = prompt_path
 
 
-REVISOR = ("gpt-6-sol", "high")
-TIMEOUT_S = 600
+MODELO_SESSAO = "sessao"
 CODIGO_USAR_SUBAGENTE = 2
 
 SCHEMAS = {
@@ -74,35 +69,6 @@ def _ler_eixo(caminho: str | Path, modo: str) -> str:
     raise FileNotFoundError(f"eixo/estrutura não encontrado: {caminho}")
 
 
-def _inicio(comando: str) -> list[str]:
-    if os.name == "nt" and Path(comando).suffix.lower() in {".cmd", ".bat"}:
-        return [os.environ.get("COMSPEC", "cmd.exe"), "/d", "/s", "/c", comando]
-    return [comando]
-
-
-def _comando_codex(comando: str, schema_path: Path, saida_path: Path) -> list[str]:
-    modelo, effort = REVISOR
-    return _inicio(comando) + [
-        "exec",
-        "--model",
-        modelo,
-        "-c",
-        f"model_reasoning_effort={effort}",
-        "-c",
-        'windows.sandbox="elevated"',
-        "--skip-git-repo-check",
-        "--ignore-user-config",
-        "--sandbox",
-        "read-only",
-        "--ephemeral",
-        "--output-schema",
-        str(schema_path),
-        "-o",
-        str(saida_path),
-        "-",
-    ]
-
-
 def _validar(candidato, modo: str) -> dict:
     if not isinstance(candidato, dict):
         raise RevisaoErro("revisor não devolveu a estrutura de revisão")
@@ -122,8 +88,7 @@ def _validar(candidato, modo: str) -> dict:
 
 
 def _extrair_json(texto: str, modo: str) -> dict:
-    """O -o do Codex grava só a última mensagem; com --output-schema ela é o próprio JSON.
-    A resposta do subagente segue o mesmo formato (cercas ```json são toleradas)."""
+    """A resposta do subagente é o próprio JSON (cercas ```json são toleradas)."""
     texto = texto.strip()
     if texto.startswith("```"):
         texto = texto.split("\n", 1)[1] if "\n" in texto else ""
@@ -132,31 +97,6 @@ def _extrair_json(texto: str, modo: str) -> dict:
         return _validar(json.loads(texto), modo)
     except json.JSONDecodeError as exc:
         raise RevisaoErro("revisor devolveu JSON inválido") from exc
-
-
-def _rodar_gpt(comando_codex: str, prompt: str, modo: str) -> dict:
-    # Pasta temporária como diretório de trabalho: o Codex é um agente e, mesmo só
-    # lendo, não deve enxergar o repositório — o material inteiro já vai no prompt.
-    with tempfile.TemporaryDirectory() as tmp:
-        tmp = Path(tmp)
-        schema_path = tmp / "schema.json"
-        saida_path = tmp / "saida.json"
-        schema_path.write_text(json.dumps(SCHEMAS[modo], ensure_ascii=False), encoding="utf-8")
-        concluido = subprocess.run(
-            _comando_codex(comando_codex, schema_path, saida_path),
-            input=prompt,
-            encoding="utf-8",
-            errors="strict",
-            capture_output=True,
-            check=False,
-            cwd=tmp,
-            timeout=TIMEOUT_S,
-        )
-        if concluido.returncode != 0:
-            raise RevisaoErro(concluido.stderr.strip()[-500:] or f"exit {concluido.returncode}")
-        if not saida_path.exists() or not saida_path.read_text(encoding="utf-8").strip():
-            raise RevisaoErro("GPT não gravou resposta")
-        return _extrair_json(saida_path.read_text(encoding="utf-8"), modo)
 
 
 def _salvar_json(caminho: str | Path, conteudo: dict) -> None:
@@ -205,7 +145,6 @@ def revisar(
     *,
     modo: str = "revisar",
     permitir_auditoria_final: bool = False,
-    codex_command: str | None = None,
 ) -> dict:
     """modo="revisar": o revisor limpa e devolve a copy inteira (só copy escrita pela skill).
     modo="auditar": o revisor devolve achados, nunca reescreve; só por pedido explícito do Cassiano.
@@ -245,21 +184,8 @@ COPY:
     atual["fase_detalhe"] = "revisor_em_execucao"
     estado.salvar_estado(estado_path, atual)
 
-    # GPT 6 Sol (high) pelo Codex é o único revisor deste script. Se falhar (CLI ausente,
-    # erro, estouro de tempo ou saída inválida), nada é contado como rodada: o pedido fica
-    # gravado para um subagente do modelo da sessão (ver registrar_subagente).
-    cli = codex_command or os.environ.get("CODEX_CLI") or shutil.which("codex")
-    try:
-        if not cli:
-            raise RevisaoErro("Codex CLI não encontrado")
-        resultado = _rodar_gpt(cli, prompt, modo)
-    except subprocess.TimeoutExpired:
-        motivo = f"GPT passou de {TIMEOUT_S}s"
-    except (RevisaoErro, OSError) as exc:
-        motivo = f"GPT falhou: {exc}"
-    else:
-        return _concluir(atual, estado_path, saida_path, resultado, *REVISOR, "gpt_concluido")
-
+    # O revisor é um subagente do modelo da sessão: o pedido fica gravado e nada conta
+    # como rodada até a resposta ser registrada (ver registrar_subagente).
     prompt_path = Path(str(saida_path) + ".prompt.md")
     prompt_path.parent.mkdir(parents=True, exist_ok=True)
     prompt_path.write_text(
@@ -269,9 +195,9 @@ COPY:
         + "\n",
         encoding="utf-8",
     )
-    atual["fase_detalhe"] = "gpt_falhou_usar_subagente"
+    atual["fase_detalhe"] = "aguardando_subagente"
     estado.salvar_estado(estado_path, atual)
-    raise UsarSubagente(motivo, prompt_path)
+    raise UsarSubagente("revisão preparada para o subagente da sessão", prompt_path)
 
 
 def registrar_subagente(
@@ -279,17 +205,16 @@ def registrar_subagente(
     estado_path: str | Path,
     saida_path: str | Path,
     resposta_path: str | Path,
-    modelo: str,
+    modelo: str | None = None,
     *,
     modo: str = "revisar",
     permitir_auditoria_final: bool = False,
 ) -> dict:
-    """Registra a resposta do subagente (modelo da sessão) com as mesmas travas do GPT."""
-    if not modelo or not modelo.strip():
-        raise RevisaoErro("informe o modelo do subagente em --modelo-subagente")
+    """Registra a resposta do subagente (modelo da sessão) aplicando as travas."""
+    modelo = (modelo or "").strip() or MODELO_SESSAO
     _, atual = _checar_travas(copy_path, estado_path, modo, permitir_auditoria_final)
     resultado = _extrair_json(_ler(resposta_path), modo)
-    return _concluir(atual, estado_path, saida_path, resultado, modelo.strip(), "sessao", "subagente_concluido")
+    return _concluir(atual, estado_path, saida_path, resultado, modelo, "sessao", "subagente_concluido")
 
 
 def main() -> int:
@@ -306,13 +231,12 @@ def main() -> int:
         action="store_true",
         help="só com pedido separado e inequívoco do Cassiano para auditar uma versão final dele",
     )
-    parser.add_argument("--codex-command")
     parser.add_argument(
         "--registrar-subagente",
         metavar="RESPOSTA_JSON",
-        help="registra a resposta de um subagente do modelo da sessão (depois que o GPT falhou)",
+        help="registra a resposta do subagente do modelo da sessão",
     )
-    parser.add_argument("--modelo-subagente", help="modelo da sessão que respondeu, ex.: claude-opus-5-5")
+    parser.add_argument("--modelo-subagente", help="opcional: nome do modelo da sessão, só para registro")
     args = parser.parse_args()
     try:
         if args.registrar_subagente:
@@ -331,7 +255,6 @@ def main() -> int:
             args.saida,
             modo=args.modo,
             permitir_auditoria_final=args.permitir_auditoria_final,
-            codex_command=args.codex_command,
         )
     except UsarSubagente as exc:
         print(

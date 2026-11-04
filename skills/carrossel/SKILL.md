@@ -45,15 +45,15 @@ de estado funcionar; representam texto final ou rascunho fornecido pelo usuário
 Canva, Notion e WhatsApp só usam conta, modelo, banco e destinatário fornecidos
 pelo usuário. Sem configuração de integração, mantenha os arquivos locais e
 explique o que falta; nunca procure as contas pessoais do autor.
-O revisor usa o mesmo GPT pelo Codex CLI da versão local; requer Codex instalado
-e autenticado. Sua alternativa é o subagente da sessão, conforme escrita-revisao.md.
+O revisor é sempre um subagente do próprio modelo da sessão (sem escolher modelo),
+conforme escrita-revisao.md.
 
 ## Travas permanentes
 
 1. Classifique o pedido como `gerar`, `incrementar` ou `auditar`. Em `auditar`, não reescreva silenciosamente.
 2. Não invente fatos, fontes, falas, links, métricas ou experiências do Cassiano.
-3. A copy é escrita sempre depois do mapa card a card aprovado, com a âncora de voz. Copy escrita ou alterada pela skill passa pelo revisor GPT 6 Sol (esforço high, via Codex) antes de ser mostrada, no máximo 2 rodadas por versão. Copy declarada final pelo Cassiano é preservada, registrada como aprovada e não chama o revisor; o validador roda nela só como informação, sem bloquear.
-4. Auditoria só quando o Cassiano pedir explicitamente: modo `auditar`, devolve achados e nunca reescreve. Auditar uma versão final dele exige pedido separado. O revisor é sempre o GPT pelo Codex; se ele falhar, a revisão vai para um subagente do modelo da sessão (ver `escrita-revisao.md`); só pare e explique se o subagente também falhar. Nenhum outro modelo entra.
+3. A copy é escrita sempre depois do mapa card a card aprovado, com a âncora de voz. Copy escrita ou alterada pela skill passa pelo revisor (subagente da sessão) antes de ser mostrada, no máximo 2 rodadas por versão. Copy declarada final pelo Cassiano é preservada, registrada como aprovada e não chama o revisor; o validador roda nela só como informação, sem bloquear.
+4. Auditoria só quando o Cassiano pedir explicitamente: modo `auditar`, devolve achados e nunca reescreve. Auditar uma versão final dele exige pedido separado. O revisor é sempre um subagente do modelo da sessão, sem especificar modelo (ver `escrita-revisao.md`); só pare e explique se o subagente falhar.
 5. Quem está no post (Cassiano ou Carine) decide depois de ler a versão revisada: aprovar, pedir ajustes ou mandar aos mentores. A skill não julga quem pode decidir; o pedido de criar a prévia no Canva não é aprovação final do post.
 6. WhatsApp exige versão e hash exatos, autorização expressa e um único intento de envio. Timeout não autoriza repetição.
 7. Mentores aconselham; não aprovam nem mudam automaticamente a copy.
@@ -99,7 +99,7 @@ criação ou alteração do post.
 2. Explique em até 5 linhas o que entendeu; use o perfil saúde e pergunte somente o formato, se faltar, e depois só as lacunas que mudariam o post.
 3. Definido o tema de um post novo, pesquise o assunto e um caso real de pessoa relacionado a ele, antes do esqueleto, pelas rotas de `pesquisa-e-casos.md`. Essa pesquisa já faz parte da criação: não peça autorização separada para pesquisar. Use Sider para papers e busca web para notícias/casos. Proponha o esqueleto com o nome da pessoa e o fato sustentado no card 1 e uma conexão específica entre o caso e o tema no card 2, além de tese, público, tensão, fontes e lacunas. Sem caso verificável, siga a alternativa explícita daquela referência. Preserve texto final do usuário e mapas já aprovados na retomada.
 4. Mostre o esqueleto identificado como estrutura provisória e pergunte: “Quer editar algo ou posso escrever? Digite escreve para seguir.” Espere a aprovação explícita do usuário. Só com o mapa aprovado a copy é escrita — com a âncora de voz — e passa pelo validador determinístico.
-5. GPT 6 Sol high revisa e limpa a versão (se falhar, subagente do modelo da sessão). Revalide; se necessário, faça somente uma segunda rodada corretiva.
+5. Um subagente da sessão revisa e limpa a versão. Revalide; se necessário, faça somente uma segunda rodada corretiva.
 6. Monte a primeira prévia em novo rascunho do Canva conforme `canva.md` e mostre o link, a copy completa, fontes, lacunas, versão e resultado das validações. Se faltar template, conexão ou operação compatível, entregue a copy local e explique o passo pendente; não invente link salvo.
 7. Quem está no post escolhe: aprovar, editar à mão (no `copy.md` ou no Notion), revisar ou enviar aos mentores. Edição à mão é preservada e não passa pelo revisor, salvo pedido explícito.
 8. Após ajuste ou aprovação, preserve o que foi aceito, informe o resultado e pergunte o próximo passo apropriado (ajustar, exportar ou entregar). Um pedido explícito de ajuste já autoriza esse ajuste; não repita a autorização. Canva e integrações seguem suas próprias rotas.
@@ -127,6 +127,6 @@ Apresente:
 - copy completa;
 - versão e hash;
 - status do validador;
-- quantidade de rodadas do revisor e modelo usado;
+- quantidade de rodadas do revisor;
 - fontes e lacunas relevantes;
 - escolhas disponíveis: aprovar, revisar ou enviar aos mentores.
