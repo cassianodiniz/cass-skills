@@ -1,7 +1,7 @@
 # Cass Skills
 
 Um único plugin com **12 skills** de conteúdo, pesquisa e nutrição para Codex e
-Claude Code. Versão atual: **1.2.2**.
+Claude Code. Versão atual: **1.3.0**.
 
 [Guia com downloads oficiais e prints](https://skills.praxios.com.br/).
 
