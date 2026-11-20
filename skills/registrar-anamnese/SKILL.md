@@ -8,13 +8,24 @@ description: >-
 
 # Registrar anamnese
 
-Transforme a transcrição literal de uma consulta nutricional em um SOAP e uma mensagem de orientações para o paciente. Entregue tudo no chat, para o nutricionista copiar. O fluxo usa apenas leitura no Fathom e termina na resposta.
+## Papel
 
-## Obter a transcrição
+Organize a transcrição de uma consulta nutricional em um registro clínico no formato SOAP e em uma mensagem final pronta para copiar no WhatsApp. Entregue os dois no chat.
 
-1. Se o nutricionista já forneceu a transcrição literal, use-a diretamente. Observações complementares do nutricionista são opcionais e servem como fonte junto com a transcrição.
-2. Se precisar buscar a consulta, use o plugin ou MCP do Fathom já conectado. Descubra as ferramentas pelo nome final, pois o prefixo varia. Com link do Fathom, use `get_recording_by_url` quando disponível. Se o conector não resolver o link, procure por nome e data. Use `list_meetings` com o período solicitado e confira título, data e participantes disponíveis. Interprete datas relativas pelo fuso do usuário e percorra as páginas relevantes quando houver mais resultados. Restrinja a busca à consulta nutricional pedida. Se o pedido for pela última consulta, use a mais recente entre as correspondências confirmadas da pessoa. Se faltarem dados para localizar a consulta, ou mais de uma corresponder ao pedido, peça o nome, a data ou a escolha entre as gravações candidatas. Gere um SOAP por resposta.
-3. Use `get_meeting_transcript` com o `recording_id` numérico da reunião identificada e a URL da reunião, se o esquema aceitar. Se a ferramenta exigir conta, use a mesma conexão em que localizou a gravação. A transcrição precisa estar completa. Se o Fathom estiver indisponível, a busca não localizar a consulta ou a transcrição vier vazia ou truncada, diga o que ocorreu e peça o link, os dados que faltam para localizar a gravação ou a transcrição completa, conforme o caso. Aguarde a transcrição literal para escrever o SOAP.
+SOAP é um formato de registro clínico com quatro partes. **Subjetivo** reúne o que o paciente relata. **Objetivo** reúne dados concretos da consulta, como medidas e exames. **Avaliação** sintetiza a situação clínica e nutricional documentada. **Plano** registra as condutas e o acompanhamento combinados.
+
+## Entrada
+
+1. Transcrição literal e completa da consulta (obrigatória). Use a transcrição fornecida ou busque no Fathom.
+2. Observações complementares do nutricionista (opcionais).
+
+## Buscar a consulta no Fathom
+
+Use o Fathom e o Google Agenda apenas para leitura.
+
+1. No plugin ou MCP do Fathom já conectado, consulte a descrição das ferramentas disponíveis e escolha as que localizam gravações e recuperam a transcrição literal. Use os parâmetros indicados pela ferramenta da sessão. Se o nutricionista informou um link da gravação, use-o para localizá-la quando o conector aceitar. Se o link não localizar a gravação ou se não houver link, procure pelo nome da pessoa ou pela data informada. Use os dois para identificar a gravação quando disponíveis. Se a busca pelo nome não encontrar a consulta, tente pelo período, que também pode vir do Google Agenda. Interprete datas relativas no fuso do usuário, percorra as páginas relevantes e confira título, participantes e horário de início.
+2. Nas buscas por nome ou data, tente confirmar a gravação com o evento correspondente no Google Agenda, se o conector estiver disponível. Compare pessoa, data e horário de início no fuso do usuário. Considere que a gravação pode começar alguns minutos depois do horário marcado. Se o pedido for pela última consulta, escolha a gravação mais recente entre as correspondências confirmadas da pessoa. Se faltar informação ou ainda houver mais de uma gravação plausível, peça confirmação antes de gerar o registro. Se o Fathom estiver indisponível ou nenhuma gravação corresponder, explique o que ocorreu e peça o link ou a transcrição literal completa, conforme o caso.
+3. Recupere a transcrição completa da gravação confirmada. Se a chamada falhar, confira a descrição e os parâmetros da ferramenta e corrija a chamada quando for possível. Se a transcrição continuar indisponível, vazia ou incompleta, informe o que aconteceu e peça a versão literal completa. Aguarde a transcrição literal completa para escrever o SOAP.
 
 ## Redigir o registro
 
@@ -23,12 +34,12 @@ Transforme a transcrição literal de uma consulta nutricional em um SOAP e uma 
 - Em cada uma das quatro seções SOAP, use um único parágrafo de frases curtas. Use `;` entre frases do mesmo parágrafo e reserve o ponto para fechar o parágrafo. Escreva em texto corrido, sem lista ou enumeração. Use vírgulas ou parênteses no lugar de travessões. Se faltar conteúdo para uma seção, escreva exatamente `Sem informações registradas na transcrição.`
 - Antes de entregar, confira os separadores e o tamanho de cada parágrafo com espaços e pontuação, excluindo o subtítulo. Se passar do limite, corte repetições e detalhes menos relevantes para a conduta e o monitoramento. Repita a conferência até caber.
 
-| Seção | Máximo | Conteúdo |
-| --- | ---: | --- |
-| Subjetivo | 450 caracteres | Queixa, objetivos, rotina, sintomas percebidos, barreiras, preferências e adesão relatada. |
-| Objetivo | 450 caracteres | Peso e tendência, medidas, exames citados, sinais objetivos, medicações, suplementos e dados numéricos de ingestão ou frequência. |
-| Avaliação | 600 caracteres | Síntese clínica e nutricional do que foi dito, evolução, fatores associados e diagnóstico nutricional quando explicitado. |
-| Plano | 700 caracteres | Condutas acordadas, ajustes alimentares, suplementação definida, metas objetivas, estratégias comportamentais, monitoramento e retorno citados. |
+## Conteúdo e limites por seção
+
+- **Subjetivo (até 450 caracteres).** Queixa, objetivos, rotina, sintomas percebidos, barreiras, preferências e adesão relatada pelo paciente.
+- **Objetivo (até 450 caracteres).** Peso e tendência, medidas, exames citados, sinais objetivos, medicações e suplementos mencionados, dados numéricos de ingestão ou frequência quando existirem.
+- **Avaliação (até 600 caracteres).** Síntese clínica e nutricional baseada no que foi dito, evolução desde a última consulta quando mencionada, fatores associados descritos e diagnóstico nutricional se estiver explicitamente presente.
+- **Plano (até 700 caracteres).** Condutas acordadas, ajustes alimentares, suplementação se definida, metas objetivas, estratégia comportamental combinada, monitoramento e retorno se citados.
 
 ## Entregar no chat
 

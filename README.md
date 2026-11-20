@@ -40,6 +40,7 @@ Selecione a skill no menu do aplicativo. No Claude Code, o nome completo é
 
 Para registrar uma consulta nutricional, indique o nome do paciente e a data ou
 passe o link da gravação. A skill usa o plugin ou MCP do Fathom já conectado.
+Se precisar confirmar a gravação, a skill pode conferir o horário no Google Agenda.
 Você também pode fornecer a transcrição diretamente no chat.
 
 ## Onde encontrar as entregas e como funciona a limpeza
