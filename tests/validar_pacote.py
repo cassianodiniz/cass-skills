@@ -6,7 +6,7 @@ c=json.loads((r/'.claude-plugin/plugin.json').read_text())
 assert a['name']==b['name']==c['name']=='cass-skills' and a['version']==b['version']==c['version']
 assert a['extensions']['com.openai']['interface']==b['interface']
 assert len(b['interface']['shortDescription'])<=30
-skills=[p for p in (r/'skills').iterdir() if p.is_dir()];assert {p.name for p in skills}=={'onboard','ask-me','search','slides-canva','carrossel','motion-designer','video-maker','dieta','biodisp-nutrients','nutricao-canetas','exames-laboratoriais'}
+skills=[p for p in (r/'skills').iterdir() if p.is_dir()];assert {p.name for p in skills}=={'onboard','ask-me','search','slides-canva','carrossel','motion-designer','video-maker','dieta','biodisp-nutrients','nutricao-canetas','exames-laboratoriais','registrar-anamnese'}
 for path in ['.agents/plugins/marketplace.json','.claude-plugin/marketplace.json']:
  catalog=json.loads((r/path).read_text())
  assert catalog['name']=='cass-skills' and len(catalog['plugins'])==1
@@ -41,4 +41,4 @@ for name in ['biodisp-nutrients','nutricao-canetas','exames-laboratoriais','onbo
 for line in (book/'INTEGRITY-SHA256.txt').read_text().splitlines():
  digest,name=line.split(None,1)
  assert hashlib.sha256((book/name.strip().removeprefix('./')).read_bytes()).hexdigest()==digest
-print('Pacote completo: onze skills, catálogos Codex/Claude, 1.234 páginas, PDFs disponíveis e integridade conferidos.')
+print('Pacote completo: doze skills, catálogos Codex/Claude, 1.234 páginas, PDFs disponíveis e integridade conferidos.')

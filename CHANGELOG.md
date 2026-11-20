@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0 — 2026-11-20
+
+- Nova skill `registrar-anamnese` para escrever o SOAP de consultas nutricionais no chat e preparar orientações para copiar no WhatsApp. Usa a transcrição fornecida ou busca a gravação no Fathom e confere o horário no Google Agenda quando disponível.
+
 ## 1.2.2 — 2026-11-02
 
 - `ask-me`: atualizada para a versão pessoal revisada, com investigação aberta, alternativas A/B/C como formato principal e escolha entre até duas skills instaladas para executar o prompt, outra skill ou ajuste.
