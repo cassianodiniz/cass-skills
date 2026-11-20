@@ -1,6 +1,6 @@
 # Cass Skills
 
-Um único plugin com **11 skills** de conteúdo, pesquisa e nutrição para Codex e
+Um único plugin com **12 skills** de conteúdo, pesquisa e nutrição para Codex e
 Claude Code. Versão atual: **1.2.2**.
 
 [Guia com downloads oficiais e prints](https://skills.praxios.com.br/).
@@ -9,6 +9,7 @@ Claude Code. Versão atual: **1.2.2**.
 |---|---|
 | [ask-me](skills/ask-me/SKILL.md) | Entrevista o usuário, prepara o prompt com as skills do pacote indicadas e encaminha a execução após autorização. |
 | [onboard](skills/onboard/SKILL.md) | Organiza a entrada de pacientes: cria pastas, preenche contratos pelo modelo e monta a Ficha do Paciente com os dados fornecidos. |
+| [registrar-anamnese](skills/registrar-anamnese/SKILL.md) | Escreve o SOAP de uma consulta nutricional e traz no chat as orientações para copiar no WhatsApp. |
 | [search](skills/search/SKILL.md) | Pesquisa temas, confere fontes e organiza os resultados e referências. |
 | [slides-canva](skills/slides-canva/SKILL.md) | Transforma material fornecido pelo usuário em slides e imagens didáticas no Canva. |
 | [carrossel](skills/carrossel/SKILL.md) | Desenvolve posts de saúde e nutrição, da entrevista e pesquisa até a prévia no Canva. |
@@ -36,6 +37,10 @@ Depois da sua aprovação, o agente continua com o pedido combinado.
 
 Selecione a skill no menu do aplicativo. No Claude Code, o nome completo é
 `/cass-skills:ask-me`. Se já souber qual usar, pode pedi-la diretamente pelo nome.
+
+Para registrar uma consulta nutricional, indique o nome do paciente e a data ou
+passe o link da gravação. A skill usa o plugin ou MCP do Fathom já conectado.
+Você também pode fornecer a transcrição diretamente no chat.
 
 ## Onde encontrar as entregas e como funciona a limpeza
 
@@ -69,7 +74,7 @@ da pasta do plugin**, para continuarem disponíveis após as atualizações.
 ```text
 Instale globalmente para o meu usuário o plugin Cass Skills deste repositório: https://github.com/cassianodiniz/cass-skills . Deixe-o disponível em todos os meus projetos no aplicativo que estou usando, Codex ou Claude Code. Faça a instalação e os testes por mim, explicando em português simples.
 
-Identifique o aplicativo, o sistema operacional e a arquitetura. Leia o README e a CONFIGURACAO.md atuais do repositório. Use o catálogo e o instalador oficial do aplicativo; no Claude Code, escolha o escopo user. Confira as 11 skills do pacote. Se o plugin já existir, atualize pela rota oficial, preservando configurações e trabalhos. Se este ambiente não permitir instalar plugins ou acessar o computador, explique o impedimento e o local compatível para continuar, sem afirmar que instalou.
+Identifique o aplicativo, o sistema operacional e a arquitetura. Leia o README e a CONFIGURACAO.md atuais do repositório. Use o catálogo e o instalador oficial do aplicativo; no Claude Code, escolha o escopo user. Confira as 12 skills do pacote. Se o plugin já existir, atualize pela rota oficial, preservando configurações e trabalhos. Se este ambiente não permitir instalar plugins ou acessar o computador, explique o impedimento e o local compatível para continuar, sem afirmar que instalou.
 
 Instale também todas as dependências locais necessárias para as skills funcionarem neste computador. Este pedido já autoriza instalar os componentes gratuitos necessários de fontes oficiais, respeitando as permissões do sistema. Reaproveite instalações compatíveis que já funcionam. Confira Python 3.10+, Node.js 22+ com npm/npx, Git, LibreOffice, um navegador Chromium compatível, WeasyPrint e suas bibliotecas nativas, pypdf no Python usado pela dieta ou pdftotext no PATH, FFmpeg/FFprobe com filtros ASS e drawtext, Pillow, NumPy, HyperFrames na versão fixada pelo plugin e o navegador de renderização exigido por ele. Prepare a transcrição Whisper large-v3-turbo com o motor compatível: MLX em Mac Apple Silicon ou faster-whisper em CPU. Leia os requisitos das skills e complete o que faltar, sem trocar silenciosamente ferramentas ou modelos.
 
